@@ -1,7 +1,9 @@
 <template>
   <div class="app">
     <div class="app__loader">
-      <Loader/>
+      <Transition name="loader">
+        <Loader v-if="showLoader" />
+      </Transition>
     </div>
 
     <div class="app__header">
@@ -19,6 +21,8 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+
 import TheNavigation from './components/the-navigation/TheNavigationIndex'
 import Loader from '@/views/loader/LoaderIndex'
 
@@ -29,7 +33,15 @@ export default {
   },
 
   setup () {
-    console.log('asdf')
+    const showLoader = ref(true)
+
+    setTimeout(() => {
+      showLoader.value = false
+    }, 2000);
+
+    return {
+      showLoader
+    }
   }
 }
 </script>
@@ -57,5 +69,15 @@ nav {
       color: #42b983;
     }
   }
+}
+
+.loader-enter-active,
+.loader-leave-active {
+  transition: opacity 1s ease;
+}
+
+.loader-enter-from,
+.loader-leave-to {
+  opacity: 0;
 }
 </style>
