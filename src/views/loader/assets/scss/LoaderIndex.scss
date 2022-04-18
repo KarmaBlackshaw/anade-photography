@@ -1,0 +1,17 @@
+.loader {
+  height: 100%;
+  width: 100%;
+  background-color: theme("colors.gray.900");
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Bebas Neue", cursive;
+  font-size: 20px;
+
+  .loader__body {
+    .loader__img {
+      @apply mx-auto;
+    }
+  }
+}
