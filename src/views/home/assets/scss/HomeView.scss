@@ -18,7 +18,7 @@
   .home__container {
     @apply mx-auto;
     max-width: min(80%, 1250px);
-    color: theme("colors.slate.100");
+    color: theme("colors.neutral.100");
     display: flex;
     align-items: center;
     height: 100%;

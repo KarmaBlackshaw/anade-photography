@@ -50,41 +50,5 @@ export default {
 </script>
 
 <style lang="scss">
-body {
-  background: theme('colors.gray.900');
-}
-.app {
-  min-height: 100vh;
-  position: relative;
-
-  .app__loader {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 99;
-  }
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-
-.loader-enter-active,
-.loader-leave-active {
-  transition: opacity 1s ease;
-}
-
-.loader-enter-from,
-.loader-leave-to {
-  opacity: 0;
-}
+@import './assets/scss/view/App';
 </style>

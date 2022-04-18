@@ -14,14 +14,16 @@
         </div>
 
         <div class="introduction__actions">
-          <button class="btn">Get Started</button>
+          <button class="btn">
+            Get Started
+          </button>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script>
 
 </script>
 
