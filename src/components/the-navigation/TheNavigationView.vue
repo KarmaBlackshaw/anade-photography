@@ -25,12 +25,9 @@
                 }"
                 @click="navigate"
               >
-                <span class="link__body">
-                  &lt;<span class="link__title">{{ currTab.text }}</span>/&gt;
-                </span>
+                {{ currTab.text }}
               </li>
             </router-link>
-
           </ul>
         </div>
       </div>
@@ -47,7 +44,6 @@ export default {
       { text: 'home', to: { name: 'home' } },
       { text: 'about', to: { name: 'about' } },
       { text: 'portfolio', to: { name: 'portfolio' } },
-      { text: 'resume', to: { name: 'resume' } },
       { text: 'contact', to: { name: 'contact' } }
     ])
 
@@ -59,5 +55,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './assets/scss/TheNavigationIndex'
+@import './assets/scss/TheNavigationView'
 </style>

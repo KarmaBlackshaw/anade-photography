@@ -1,13 +1,13 @@
 <template>
   <div class="app">
-    <Transition name="loader">
+    <!-- <Transition name="loader">
       <div
         class="app__loader"
         v-if="showLoader"
       >
         <Loader  />
       </div>
-    </Transition>
+    </Transition> -->
 
     <div class="app__header">
       <TheNavigation class="app__navigation"/>
@@ -26,8 +26,8 @@
 <script>
 import { ref } from 'vue'
 
-import TheNavigation from './components/the-navigation/TheNavigationIndex'
-import Loader from '@/views/loader/LoaderIndex'
+import TheNavigation from './components/the-navigation/TheNavigationView'
+import Loader from '@/views/loader/LoaderView'
 
 export default {
   components: {

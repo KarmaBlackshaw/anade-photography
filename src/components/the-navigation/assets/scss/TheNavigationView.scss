@@ -31,19 +31,32 @@
 
         .link {
           text-transform: capitalize;
-          font-size: 7px;
-          font-family: "Fira Mono";
+          font-size: 14px;
+          font-family: "Poppins";
+          font-weight: 400;
           cursor: pointer;
           color: rgb(95, 95, 95);
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
           &.is-active {
             color: #000;
+            font-weight: 500;
           }
 
-          .link__title {
-            font-size: 13px;
-            margin-right: 3px;
-            margin-left: 3px;
+          &:last-child {
+            margin-left: 10px;
+            border: 1px solid theme("colors.gray.500");
+            border-radius: 30px;
+            height: 40px;
+            width: 100px;
+            transition: all 300ms ease;
+
+            &:hover {
+              background-color: theme("colors.gray.800");
+              color: theme("colors.gray.50");
+            }
           }
         }
       }
