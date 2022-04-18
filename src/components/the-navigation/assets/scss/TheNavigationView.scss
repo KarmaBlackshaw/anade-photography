@@ -1,7 +1,9 @@
 .navigation {
   height: 64px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  position: fixed;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 2;
 
   .navigation__container {
     @apply mx-auto;
@@ -14,7 +16,7 @@
 
   .navigation__logo {
     img {
-      height: 50px;
+      height: 25px;
     }
   }
 
@@ -25,7 +27,7 @@
 
         li {
           &:not(:last-child) {
-            margin-right: 25px;
+            margin-right: 40px;
           }
         }
 
@@ -35,27 +37,27 @@
           font-family: "Poppins";
           font-weight: 400;
           cursor: pointer;
-          color: rgb(95, 95, 95);
+          color: theme("colors.slate.100");
           display: flex;
           justify-content: center;
           align-items: center;
 
           &.is-active {
-            color: #000;
+            color: rgb(250, 250, 250);
             font-weight: 500;
           }
 
           &:last-child {
             margin-left: 10px;
-            border: 1px solid theme("colors.gray.500");
+            border: 1px solid theme("colors.slate.100");
             border-radius: 30px;
             height: 40px;
             width: 100px;
             transition: all 300ms ease;
 
             &:hover {
-              background-color: theme("colors.gray.800");
-              color: theme("colors.gray.50");
+              background-color: theme("colors.slate.50");
+              color: theme("colors.slate.800");
             }
           }
         }

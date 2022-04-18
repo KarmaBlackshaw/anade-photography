@@ -3,7 +3,7 @@
     <div class="navigation__container">
       <div class="navigation__logo">
         <img
-          src="./assets/svg/logo.svg"
+          src="./assets/images/logo.png"
           alt=""
         >
       </div>
@@ -44,6 +44,7 @@ export default {
       { text: 'home', to: { name: 'home' } },
       { text: 'about', to: { name: 'about' } },
       { text: 'portfolio', to: { name: 'portfolio' } },
+      { text: 'services', to: { name: 'about' } },
       { text: 'contact', to: { name: 'contact' } }
     ])
 
@@ -55,5 +56,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './assets/scss/TheNavigationView'
+@import './assets/scss/TheNavigationView';
 </style>

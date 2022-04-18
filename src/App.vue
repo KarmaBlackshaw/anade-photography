@@ -50,6 +50,9 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  background: theme('colors.gray.900');
+}
 .app {
   min-height: 100vh;
   position: relative;
