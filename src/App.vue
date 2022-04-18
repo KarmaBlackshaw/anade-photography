@@ -1,10 +1,13 @@
 <template>
   <div class="app">
-    <div class="app__loader">
-      <Transition name="loader">
-        <Loader v-if="showLoader" />
-      </Transition>
-    </div>
+    <Transition name="loader">
+      <div
+        class="app__loader"
+        v-if="showLoader"
+      >
+        <Loader  />
+      </div>
+    </Transition>
 
     <div class="app__header">
       <TheNavigation class="app__navigation"/>
