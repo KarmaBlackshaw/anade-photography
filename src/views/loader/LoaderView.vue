@@ -3,18 +3,22 @@
     <div class="loader__body">
       <img
         class="loader__img"
-        src="./assets/svg/spinning-circles.svg"
+        src="./assets/svg/puff.svg"
         alt=""
       >
 
-      Mark Mazo Anade
+      <img
+        class="loader__title"
+        src="@/assets/images/anade-text-logo.png"
+        alt=""
+      >
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "LoaderIndex"
+  name: "LoaderView"
 }
 </script>
 

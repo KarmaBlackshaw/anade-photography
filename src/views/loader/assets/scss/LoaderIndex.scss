@@ -12,6 +12,12 @@
   .loader__body {
     .loader__img {
       @apply mx-auto;
+      height: 70px;
+    }
+
+    .loader__title {
+      margin-top: 10px;
+      height: 20px;
     }
   }
 }
