@@ -1,6 +1,10 @@
 <template>
   <div class="navigation">
     <div class="navigation__container">
+      <div class="navigation__hamburger">
+        <TheNavigationHamburger />
+      </div>
+
       <div class="navigation__logo">
         <img
           src="./assets/images/logo.png"
@@ -9,7 +13,10 @@
       </div>
 
       <div class="navigation__body">
-        <div class="navigation__item navigation__item--tabs">
+        <div
+          class="navigation__item navigation__item--tabs"
+          v-if="breakpoint.sm"
+        >
           <ul>
             <router-link
               v-for="(currTab, tabKey) in tabs"
@@ -30,15 +37,25 @@
             </router-link>
           </ul>
         </div>
+
+        <div v-else>
+
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive, inject } from 'vue'
+
+import TheNavigationHamburger from './components/TheNavigationHamburger'
 
 export default {
+  components: {
+    TheNavigationHamburger
+  },
+
   setup () {
     const tabs = reactive([
       { text: 'home', to: { name: 'home' } },
@@ -48,8 +65,11 @@ export default {
       { text: 'contact', to: { name: 'contact' } }
     ])
 
+    const breakpoint = inject('breakpoint')
+
     return {
-      tabs
+      tabs,
+      breakpoint
     }
   }
 }

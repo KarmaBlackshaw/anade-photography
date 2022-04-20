@@ -2,6 +2,45 @@
   <div class="home">
     <div class="home__background"></div>
 
+    <div
+      v-if="breakpoint.md"
+      class="home__overlay home__overlay--socials"
+    >
+      <ul>
+        <li>
+          <img
+            src="./assets/images/facebook.png"
+            alt=""
+          >
+        </li>
+        <li>
+          <img
+            src="./assets/images/twitter.png"
+            alt=""
+          >
+        </li>
+        <li>
+          <img
+            src="./assets/images/instagram.png"
+            alt=""
+          >
+        </li>
+        <li>
+          <img
+            src="./assets/images/tik-tok.png"
+            alt=""
+          >
+        </li>
+      </ul>
+    </div>
+
+    <div
+      v-if="breakpoint.md"
+      class="home__overlay home__overlay--email"
+    >
+      <span>irenesejah29@gmail.com</span>
+    </div>
+
     <div class="home__container">
       <div class="home__introduction introduction">
         <div class="introduction__title mb-5">
@@ -24,7 +63,17 @@
 </template>
 
 <script>
+import { inject } from 'vue'
 
+export default {
+  setup () {
+    const breakpoint = inject('breakpoint')
+
+    return {
+      breakpoint
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

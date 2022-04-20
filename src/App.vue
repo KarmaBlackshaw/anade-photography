@@ -24,7 +24,10 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, provide } from 'vue'
+
+// composables
+import useBreakpoint from '@/composables/useBreakpoint'
 
 import TheNavigation from './components/the-navigation/TheNavigationView'
 import Loader from '@/views/loader/LoaderView'
@@ -36,11 +39,18 @@ export default {
   },
 
   setup () {
+    const {
+      breakpoint
+    } = useBreakpoint()
+
+    provide('breakpoint', breakpoint)
+
     const showLoader = ref(true)
 
     setTimeout(() => {
       showLoader.value = false
-    }, 2000);
+    }, 2000)
+
 
     return {
       showLoader

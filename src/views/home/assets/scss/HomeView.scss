@@ -15,6 +15,68 @@
     left: 0;
   }
 
+  .home__overlay {
+    color: white;
+    position: absolute;
+    bottom: 100px;
+
+    &:after {
+      content: "";
+      position: absolute;
+      height: 100px;
+      width: 2px;
+      background-color: theme("colors.gray.500");
+      filter: opacity(40%) grayscale(80%);
+    }
+
+    &.home__overlay--socials {
+      left: 80px;
+
+      ul {
+        li {
+          margin-bottom: 15px;
+
+          img {
+            height: 30px;
+            width: 30px;
+            filter: opacity(40%) grayscale(80%);
+            transition: filter 300ms ease;
+
+            &:hover {
+              filter: opacity(100%) grayscale(0%);
+            }
+          }
+        }
+      }
+
+      &:after {
+        left: 15px;
+      }
+    }
+
+    &.home__overlay--email {
+      right: 80px;
+      writing-mode: vertical-rl;
+
+      span {
+        color: theme("colors.gray.500");
+        margin-bottom: 15px;
+        font-family: "Fira Mono";
+        font-size: 15px;
+        letter-spacing: 2px;
+        transition: color 300ms ease;
+
+        &:hover {
+          color: theme("colors.gray.50");
+        }
+      }
+
+      &:after {
+        right: 15px;
+      }
+    }
+  }
+
   .home__container {
     @apply mx-auto;
     max-width: min(80%, 1250px);

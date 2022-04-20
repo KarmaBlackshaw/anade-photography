@@ -6,25 +6,25 @@ $screen-lg-min: 1024px;
 
 $screen-xl-min: 1280px;
 
-@mixin sm {
+@mixin breakpoint_sm {
   @media (min-width: #{$screen-sm-min}) {
     @content;
   }
 }
 
-@mixin md {
+@mixin breakpoint_md {
   @media (min-width: #{$screen-md-min}) {
     @content;
   }
 }
 
-@mixin lg {
+@mixin breakpoint_lg {
   @media (min-width: #{$screen-lg-min}) {
     @content;
   }
 }
 
-@mixin xl {
+@mixin breakpoint_xl {
   @media (min-width: #{$screen-xl-min}) {
     @content;
   }

@@ -30,6 +30,10 @@ export default () => {
     Object.defineProperty(breakpoints, 'lg', define({ get: () => _isMin(screenLgMin) }))
     Object.defineProperty(breakpoints, 'xl', define({ get: () => _isMin(screenXlMin) }))
 
+    Object.defineProperty(breakpoints, 'name', define({
+      get: () => ['sm', 'md', 'lg', 'xl'].find(curr => breakpoints[curr]) || 'xs'
+    }))
+
     return breakpoints
   })
 
