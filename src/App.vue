@@ -1,5 +1,10 @@
 <template>
-  <div class="app">
+  <div
+    class="app"
+    :class="{
+      'app--loading': showLoader
+    }"
+  >
     <Transition name="loader">
       <div
         class="app__loader"
@@ -50,7 +55,6 @@ export default {
     setTimeout(() => {
       showLoader.value = false
     }, 2000)
-
 
     return {
       showLoader

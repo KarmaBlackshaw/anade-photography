@@ -6,6 +6,11 @@ body {
   min-height: 100vh;
   position: relative;
 
+  &.app--loading {
+    height: 100vh;
+    overflow-y: hidden;
+  }
+
   .app__loader {
     position: absolute;
     width: 100%;
