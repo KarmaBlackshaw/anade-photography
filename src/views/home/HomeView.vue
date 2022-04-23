@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <section class="home">
     <div class="home__background"></div>
 
     <div
@@ -41,6 +41,8 @@
       <span>irenesejah29@gmail.com</span>
     </div>
 
+    <base-scroll-icon class="home__scroll-icon"/>
+
     <div class="home__container">
       <div class="home__introduction introduction">
         <div class="introduction__title mb-5">
@@ -59,7 +61,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -76,6 +78,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import './assets/scss/HomeView';
-</style>
+<style src="./assets/scss/HomeView.scss" lang="scss" scoped></style>
