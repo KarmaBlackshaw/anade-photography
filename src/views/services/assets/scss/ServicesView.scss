@@ -1,0 +1,36 @@
+.services {
+  .services-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-rows: auto;
+    gap: 50px;
+
+    .services-list__item {
+      .img-container {
+        @apply shadow-md;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        height: 200px;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .services-list__img {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        transition: transform 200ms ease;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+
+      .services-list__title {
+        color: theme("colors.gray.200");
+        font-family: Quicksand;
+        text-align: center;
+      }
+    }
+  }
+}
