@@ -54,7 +54,7 @@ export default {
 
     setTimeout(() => {
       showLoader.value = false
-    }, 2000)
+    }, 3000)
 
     return {
       showLoader
