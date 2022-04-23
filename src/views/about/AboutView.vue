@@ -1,13 +1,11 @@
 <template>
-  <div>
+  <section class="about">
     asdfasdfsadf
-  </div>
+  </section>
 </template>
 
 <script setup>
 
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style src="./assets/scss/AboutView.scss" lang="scss" scoped></style>

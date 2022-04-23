@@ -6,7 +6,6 @@
         src="./assets/svg/puff.svg"
         alt=""
       >
-
       <img
         class="loader__title"
         src="@/assets/images/anade-text-logo.png"
