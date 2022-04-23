@@ -4,6 +4,11 @@
   width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 2;
+  transition: background-color 500ms ease;
+
+  &.navigation--darker {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
 
   .navigation__hamburger {
     position: absolute;

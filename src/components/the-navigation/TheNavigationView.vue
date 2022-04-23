@@ -1,5 +1,10 @@
 <template>
-  <div class="navigation">
+  <div
+    class="navigation"
+    :class="{
+      'navigation--darker': windowScrollY > 800
+    }"
+  >
     <div class="navigation__container">
       <div class="navigation__hamburger">
         <TheNavigationHamburger />
@@ -47,7 +52,7 @@
 </template>
 
 <script>
-import { reactive, inject } from 'vue'
+import { reactive, ref, inject } from 'vue'
 
 import TheNavigationHamburger from './components/TheNavigationHamburger'
 
@@ -67,9 +72,16 @@ export default {
 
     const breakpoint = inject('breakpoint')
 
+    const windowScrollY = ref(0)
+
+    window.addEventListener("scroll", function (){
+      windowScrollY.value = this.scrollY
+    })
+
     return {
       tabs,
-      breakpoint
+      breakpoint,
+      windowScrollY
     }
   }
 }
