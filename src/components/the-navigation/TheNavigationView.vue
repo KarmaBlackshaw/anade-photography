@@ -5,10 +5,36 @@
       'navigation--darker': windowScrollY > 800
     }"
   >
+    <div
+      class="navigation__overlay"
+      v-if="isHamburgerActive"
+    >
+      <ul class="overlay__list">
+        <router-link
+          v-for="(currTab, tabKey) in tabs"
+          :key="tabKey"
+          :to="currTab.to"
+          custom
+          v-slot="{ navigate, isActive, isExactActive }"
+        >
+          <li
+            class="link overlay__item"
+            :class="{
+              'is-active': isActive || isExactActive
+            }"
+            @click="navigate"
+          >
+            {{ currTab.text }}
+          </li>
+        </router-link>
+      </ul>
+    </div>
+
     <div class="navigation__container">
-      <div class="navigation__hamburger">
-        <TheNavigationHamburger />
-      </div>
+      <TheNavigationHamburger
+        class="navigation__hamburger"
+        @click.native="toggleHamburger"
+      />
 
       <div class="navigation__logo">
         <img
@@ -42,10 +68,6 @@
             </router-link>
           </ul>
         </div>
-
-        <div v-else>
-
-        </div>
       </div>
     </div>
   </div>
@@ -63,11 +85,11 @@ export default {
 
   setup () {
     const tabs = reactive([
-      { text: 'home', to: { name: 'home' } },
-      { text: 'about', to: { name: 'about' } },
-      { text: 'portfolio', to: { name: 'portfolio' } },
-      { text: 'services', to: { name: 'about' } },
-      { text: 'contact', to: { name: 'contact' } }
+      { text: 'home', to: '/' },
+      { text: 'about', to: '#about' },
+      { text: 'portfolio', to: '#portfolio' },
+      { text: 'services', to: '#services' },
+      { text: 'contact', to: '#contact' }
     ])
 
     const breakpoint = inject('breakpoint')
@@ -78,10 +100,19 @@ export default {
       windowScrollY.value = this.scrollY
     })
 
+    const isHamburgerActive = ref(false)
+    function toggleHamburger () {
+      console.log('asd')
+      isHamburgerActive.value = !isHamburgerActive.value
+    }
+
     return {
       tabs,
       breakpoint,
-      windowScrollY
+      windowScrollY,
+
+      isHamburgerActive,
+      toggleHamburger
     }
   }
 }
