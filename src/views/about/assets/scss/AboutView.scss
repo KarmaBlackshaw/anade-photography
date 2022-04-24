@@ -46,13 +46,75 @@
         }
 
         &.best-deal:after {
-          width: 70%;
+          width: 100%;
           background-color: theme("colors.sky.500");
         }
 
         &.quality:after {
-          width: 70%;
+          width: 90%;
           background-color: theme("colors.yellow.500");
+        }
+      }
+    }
+  }
+
+  .about__list {
+    .about__item {
+      display: flex;
+      margin-bottom: 20px;
+      gap: 20px;
+      flex-wrap: wrap;
+
+      @include breakpoint_sm {
+        flex-wrap: nowrap;
+      }
+
+      &:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .item__img-container {
+        height: 200px;
+        overflow: hidden;
+        border-radius: 10px;
+        @apply shadow-md;
+
+        img {
+          transition: transform 200ms ease;
+
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+      }
+
+      .item__aside {
+        .item__title {
+          @apply tracking-wide;
+          font-size: 1.3rem;
+          font-family: Roboto;
+          font-weight: 500;
+          text-transform: uppercase;
+          color: theme("colors.gray.200");
+          position: relative;
+          margin-bottom: 10px;
+
+          &:after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background-color: theme("colors.sky.300");
+            z-index: 9;
+          }
+        }
+
+        .item__body {
+          font-family: Quicksand;
+          color: theme("colors.gray.400");
+          font-size: 15px;
         }
       }
     }

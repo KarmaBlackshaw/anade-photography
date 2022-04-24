@@ -1,14 +1,14 @@
 <template>
   <section class="about">
-    <base-section-title class="services-title">
+    <base-section-title>
       About me
     </base-section-title>
 
-    <base-section-subtitle class="services-title mb-10">
+    <base-section-subtitle class="mb-10">
       What I do to improve custom loyalty
     </base-section-subtitle>
 
-    <div class="about__categories">
+    <div class="about__categories mb-10">
       <div
         class="category"
         v-for="(category, categoryKey) in categories"
@@ -31,6 +31,29 @@
           class="category__progress-bar"
           :class="category.name"
         >
+        </div>
+      </div>
+    </div>
+
+    <div class="about__list">
+      <div
+        class="about__item"
+        v-for="i in 3"
+        :key="i"
+      >
+        <div class="item__img-container">
+          <img
+            src="https://images.pexels.com/photos/10715497/pexels-photo-10715497.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            alt=""
+            class="item__img"
+          >
+        </div>
+
+        <div class="item__aside">
+          <div class="item__title">Personal Level</div>
+          <div class="item__body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit earum mollitia velit soluta sint quis atque possimus pariatur! Illo assumenda rem debitis sint mollitia earum dolor quisquam doloremque voluptatum laudantium molestias reiciendis, maxime minima, neque, voluptatem repellendus unde molestiae culpa. Natus, unde amet laboriosam dolorum asperiores veniam. Amet, qui excepturi similique a veniam dolorum
+          </div>
         </div>
       </div>
     </div>
