@@ -1,3 +1,60 @@
 .about {
-  background-color: red;
+  .about__categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-rows: auto;
+    gap: 30px;
+
+    .category {
+      .category__body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+
+        .category__icon {
+          width: 36px;
+          margin-right: 5px;
+        }
+
+        .category__title {
+          color: theme("colors.gray.200");
+          font-family: Roboto;
+          font-size: 13px;
+        }
+      }
+
+      .category__progress-bar {
+        height: 3px;
+        background-color: theme("colors.gray.500");
+        position: relative;
+
+        &:after {
+          content: "";
+          position: absolute;
+          height: 100%;
+        }
+
+        &.reliable:after {
+          width: 100%;
+          background-color: theme("colors.emerald.600");
+        }
+
+        &.time-saving:after {
+          width: 70%;
+          background-color: theme("colors.amber.600");
+        }
+
+        &.best-deal:after {
+          width: 70%;
+          background-color: theme("colors.sky.500");
+        }
+
+        &.quality:after {
+          width: 70%;
+          background-color: theme("colors.yellow.500");
+        }
+      }
+    }
+  }
 }

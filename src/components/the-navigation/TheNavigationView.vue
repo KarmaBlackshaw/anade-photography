@@ -87,8 +87,8 @@ export default {
     const tabs = reactive([
       { text: 'home', to: '/' },
       { text: 'about', to: '#about' },
-      { text: 'portfolio', to: '#portfolio' },
       { text: 'services', to: '#services' },
+      { text: 'portfolio', to: '#portfolio' },
       { text: 'contact', to: '#contact' }
     ])
 

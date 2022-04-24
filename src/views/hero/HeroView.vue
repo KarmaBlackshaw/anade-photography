@@ -1,16 +1,23 @@
 <template>
   <section class="hero">
-    <HomeView id="home"/>
+    <HomeView
+      id="home"
+      class="mb-20"
+    />
 
     <div class="container mx-auto px-10 sm:px-20">
       <FlowView
         id="flow"
-        class="hero__item--flow"
+        class="mb-20"
+      />
+
+      <AboutView
+        id="about"
+        class="mb-20"
       />
 
       <ServicesView id="services" />
 
-      <!-- <AboutView id="about-view" /> -->
     </div>
   </section>
 </template>
