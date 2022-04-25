@@ -13,7 +13,6 @@
       <base-card-subtitle class="flow__item--title">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia dolorum aliquam, iure inventore distinctio consectetur non dolor, ratione beatae illum nulla
       </base-card-subtitle>
-
     </base-card>
 
     <base-card class="flow__item">
@@ -29,7 +28,6 @@
       <base-card-subtitle class="flow__item--title">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia dolorum aliquam, iure inventore distinctio consectetur non dolor, ratione beatae illum nulla
       </base-card-subtitle>
-
     </base-card>
 
     <base-card class="flow__item">
@@ -45,7 +43,6 @@
       <base-card-subtitle class="flow__item--title">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia dolorum aliquam, iure inventore distinctio consectetur non dolor, ratione beatae illum nulla
       </base-card-subtitle>
-
     </base-card>
   </section>
 </template>

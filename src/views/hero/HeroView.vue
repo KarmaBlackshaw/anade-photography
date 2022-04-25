@@ -17,7 +17,6 @@
       />
 
       <ServicesView id="services" />
-
     </div>
   </section>
 </template>

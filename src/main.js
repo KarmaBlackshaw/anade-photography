@@ -12,7 +12,7 @@ import camelCase from 'lodash/camelCase'
 
 const app = createApp(App)
 
-const requireComponent = require.context('./components',true,/Base[A-Z]\w+\.(vue|js)$/)
+const requireComponent = require.context('./components', true, /Base[A-Z]\w+\.(vue|js)$/)
 
 requireComponent.keys().forEach(fileName => {
   // Get component config

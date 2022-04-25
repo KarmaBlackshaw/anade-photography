@@ -10,9 +10,9 @@
 
     <div class="about__categories mb-10">
       <div
-        class="category"
         v-for="(category, categoryKey) in categories"
         :key="categoryKey"
+        class="category"
       >
         <div class="category__body">
           <div class="category__icon">
@@ -37,20 +37,22 @@
 
     <div class="about__list">
       <div
-        class="about__item"
         v-for="i in 3"
         :key="i"
+        class="about__item"
       >
-        <div class="item__img-container">
+        <figure class="item__img-figure">
           <img
             src="https://images.pexels.com/photos/10715497/pexels-photo-10715497.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
             alt=""
             class="item__img"
           >
-        </div>
+        </figure>
 
         <div class="item__aside">
-          <div class="item__title">Personal Level</div>
+          <div class="item__title">
+            Personal Level
+          </div>
           <div class="item__body">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit earum mollitia velit soluta sint quis atque possimus pariatur! Illo assumenda rem debitis sint mollitia earum dolor quisquam doloremque voluptatum laudantium molestias reiciendis, maxime minima, neque, voluptatem repellendus unde molestiae culpa. Natus, unde amet laboriosam dolorum asperiores veniam. Amet, qui excepturi similique a veniam dolorum
           </div>

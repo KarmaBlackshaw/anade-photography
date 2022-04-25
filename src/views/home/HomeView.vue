@@ -41,7 +41,7 @@
       <span>irenesejah29@gmail.com</span>
     </div>
 
-    <base-scroll-icon class="home__scroll-icon"/>
+    <base-scroll-icon class="home__scroll-icon" />
 
     <div class="home__container">
       <div class="home__introduction introduction">
