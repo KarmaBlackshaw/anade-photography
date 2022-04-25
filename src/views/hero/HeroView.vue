@@ -16,7 +16,15 @@
         class="mb-20"
       />
 
-      <ServicesView id="services" />
+      <TestimonialsView
+        id="testimonials"
+        class="mb-20"
+      />
+
+      <ServicesView
+        id="services"
+        class="mb-20"
+      />
     </div>
   </section>
 </template>
@@ -26,13 +34,15 @@ import HomeView from '@/views/home/HomeView'
 import FlowView from '@/views/flow/FlowView'
 import ServicesView from '@/views/services/ServicesView'
 import AboutView from '@/views/about/AboutView'
+import TestimonialsView from '@/views/testimonials/TestimonialsView'
 
 export default {
   components: {
     HomeView,
     AboutView,
     FlowView,
-    ServicesView
+    ServicesView,
+    TestimonialsView
   }
 }
 </script>
