@@ -9,6 +9,10 @@
 
     .testimonial-card__footer {
       .user-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
         .user-container__name {
           font-size: 1.2em;
           font-weight: 700;
@@ -21,6 +25,13 @@
           font-size: 0.9em;
           color: theme("colors.gray.500");
           text-transform: uppercase;
+        }
+
+        .user-container__icon {
+          img {
+            height: 40px;
+            width: auto;
+          }
         }
       }
     }

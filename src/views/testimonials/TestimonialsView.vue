@@ -29,11 +29,20 @@
 
             <base-card-subtitle class="testimonial-card__footer">
               <div class="user-container">
-                <div class="user-container__name">
-                  Ernie Jeash
+                <div class="user__names">
+                  <div class="user-container__name">
+                    Ernie Jeash
+                  </div>
+                  <div class="user-container__position">
+                    CEO
+                  </div>
                 </div>
-                <div class="user-container__position">
-                  CEO
+
+                <div class="user-container__icon">
+                  <img
+                    src="./assets/images/man.png"
+                    alt=""
+                  >
                 </div>
               </div>
             </base-card-subtitle>
