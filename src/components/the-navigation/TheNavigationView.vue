@@ -6,16 +6,16 @@
     }"
   >
     <div
-      class="navigation__overlay"
       v-if="isHamburgerActive"
+      class="navigation__overlay"
     >
       <ul class="overlay__list">
         <router-link
           v-for="(currTab, tabKey) in tabs"
           :key="tabKey"
+          v-slot="{ navigate, isActive, isExactActive }"
           :to="currTab.to"
           custom
-          v-slot="{ navigate, isActive, isExactActive }"
         >
           <li
             class="link overlay__item"
@@ -33,7 +33,7 @@
     <div class="navigation__container">
       <TheNavigationHamburger
         class="navigation__hamburger"
-        @click.native="toggleHamburger"
+        @click="toggleHamburger"
       />
 
       <div class="navigation__logo">
@@ -45,16 +45,16 @@
 
       <div class="navigation__body">
         <div
-          class="navigation__item navigation__item--tabs"
           v-if="breakpoint.sm"
+          class="navigation__item navigation__item--tabs"
         >
           <ul>
             <router-link
               v-for="(currTab, tabKey) in tabs"
               :key="tabKey"
+              v-slot="{ navigate, isActive, isExactActive }"
               :to="currTab.to"
               custom
-              v-slot="{ navigate, isActive, isExactActive }"
             >
               <li
                 class="link"
@@ -85,14 +85,25 @@ export default {
 
   setup () {
     const tabs = reactive([
-      { text: 'home', to: '/' },
-      { text: 'about', to: '#about' },
-      { text: 'services', to: '#services' },
-      { text: 'portfolio', to: '#portfolio' },
-      { text: 'contact', to: '#contact' }
+      { text: 'home',
+        to: '/'
+      },
+      { text: 'about',
+        to: '#about'
+      },
+      { text: 'services',
+        to: '#services'
+      },
+      { text: 'testimonials',
+        to: '#testimonials'
+      },
+      { text: 'portfolio',
+        to: '#portfolio'
+      },
+      { text: 'contact',
+        to: '#contact'
+      }
     ])
-
-    const breakpoint = inject('breakpoint')
 
     const windowScrollY = ref(0)
 
@@ -107,8 +118,9 @@ export default {
     }
 
     return {
+      breakpoint: inject('breakpoint'),
+
       tabs,
-      breakpoint,
       windowScrollY,
 
       isHamburgerActive,
