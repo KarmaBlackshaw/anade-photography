@@ -3,7 +3,7 @@
     <div class="home__background"></div>
 
     <div
-      v-if="breakpoint.md"
+      v-if="breakpoint.lg"
       class="home__overlay home__overlay--socials"
     >
       <ul>
@@ -35,7 +35,7 @@
     </div>
 
     <div
-      v-if="breakpoint.md"
+      v-if="breakpoint.lg"
       class="home__overlay home__overlay--email"
     >
       <span>irenesejah29@gmail.com</span>
