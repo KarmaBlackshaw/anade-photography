@@ -28,7 +28,7 @@ export default () => {
 
   const resizeCallback = _debounce(() => {
     state.width = window.innerWidth
-  }, 500)
+  }, 100)
 
   onMounted(() => {
     state.width = window.innerWidth
