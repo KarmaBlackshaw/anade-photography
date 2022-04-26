@@ -7,23 +7,22 @@
   >
     <Transition name="loader">
       <div
-        class="app__loader"
         v-if="showLoader"
+        class="app__loader"
       >
-        <Loader  />
+        <Loader />
       </div>
     </Transition>
 
     <div class="app__header">
-      <TheNavigation class="app__navigation"/>
+      <TheNavigation class="app__navigation" />
     </div>
 
     <div class="app__body">
-      <router-view/>
+      <router-view />
     </div>
 
     <div class="app__footer">
-
     </div>
   </div>
 </template>
