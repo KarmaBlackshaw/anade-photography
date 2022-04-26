@@ -58,7 +58,7 @@
       v-if="breakpoint.lg"
       class="home__overlay home__overlay--email"
     >
-      <span>irenesejah29@gmail.com</span>
+      <span>markmazoanade@gmail.com</span>
     </div>
 
     <base-scroll-icon class="home__scroll-icon" />
