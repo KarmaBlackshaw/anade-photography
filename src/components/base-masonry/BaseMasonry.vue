@@ -3,7 +3,7 @@
     <div
       v-for="(_, i) in columns"
       :key="i"
-      class="base-masonry__item"
+      class="base-masonry__column"
     >
       <div class="base-masonry__figure">
         <img
@@ -21,6 +21,7 @@
 import { computed } from 'vue'
 
 import _chunk from 'lodash/chunk'
+
 export default {
   name: "BaseMasonry",
 

@@ -8,28 +8,48 @@
     >
       <ul>
         <li>
-          <img
-            src="./assets/images/facebook.png"
-            alt=""
+          <a
+            href="https://www.facebook.com/notmarkanade"
+            target="_blank"
           >
+            <img
+              src="./assets/images/facebook.png"
+              alt=""
+            >
+          </a>
         </li>
         <li>
-          <img
-            src="./assets/images/twitter.png"
-            alt=""
+          <a
+            href="https://www.instagram.com/notmarkanade/"
+            target="_blank"
           >
+            <img
+              src="./assets/images/instagram.png"
+              alt=""
+            >
+          </a>
         </li>
         <li>
-          <img
-            src="./assets/images/instagram.png"
-            alt=""
+          <a
+            href="https://youtube.com/channel/UChKuie3_PkdnhCTasr1xKiw?sub_confirmation=1"
+            target="_blank"
           >
+            <img
+              src="./assets/images/youtube.png"
+              alt=""
+            >
+          </a>
         </li>
         <li>
-          <img
-            src="./assets/images/tik-tok.png"
-            alt=""
+          <a
+            href="https://vt.tiktok.com/ZSJx5bXTG/"
+            target="_blank"
           >
+            <img
+              src="./assets/images/tik-tok.png"
+              alt=""
+            >
+          </a>
         </li>
       </ul>
     </div>
