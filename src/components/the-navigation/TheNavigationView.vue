@@ -13,16 +13,16 @@
         <router-link
           v-for="(currTab, tabKey) in tabs"
           :key="tabKey"
-          v-slot="{ navigate, isActive, isExactActive }"
+          v-slot="{ navigate }"
           :to="currTab.to"
           custom
         >
           <li
             class="link overlay__item"
             :class="{
-              'is-active': isActive || isExactActive
+              'is-active': route.hash === currTab.to
             }"
-            @click="navigate"
+            @click="navigate(), toggleHamburger()"
           >
             {{ currTab.text }}
           </li>
