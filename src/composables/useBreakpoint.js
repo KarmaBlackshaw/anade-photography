@@ -1,4 +1,5 @@
-import { onMounted, reactive, computed } from 'vue'
+import { onMounted, onUnmounted, reactive, computed } from 'vue'
+import _debounce from 'lodash/debounce'
 
 export default () => {
   const state = reactive({
@@ -8,40 +9,34 @@ export default () => {
   const breakpoint = computed(() => {
     const width = state.width
 
-    const breakpoints = {}
     const _isMin = a => width >= a
 
     const screenSmMin = 640
-
     const screenMdMin = 768
-
     const screenLgMin = 1024
-
     const screenXlMin = 1280
 
-    const define = props => ({
-      enumerable: false,
-      configurable: false,
-      ...props
-    })
-
-    Object.defineProperty(breakpoints, 'sm', define({ get: () => _isMin(screenSmMin) }))
-    Object.defineProperty(breakpoints, 'md', define({ get: () => _isMin(screenMdMin) }))
-    Object.defineProperty(breakpoints, 'lg', define({ get: () => _isMin(screenLgMin) }))
-    Object.defineProperty(breakpoints, 'xl', define({ get: () => _isMin(screenXlMin) }))
-
-    Object.defineProperty(breakpoints, 'name', define({
-      get: () => ['sm', 'md', 'lg', 'xl'].find(curr => breakpoints[curr]) || 'xs'
-    }))
+    const breakpoints = {
+      sm: _isMin(screenSmMin),
+      md: _isMin(screenMdMin),
+      lg: _isMin(screenLgMin),
+      xl: _isMin(screenXlMin)
+    }
 
     return breakpoints
   })
 
+  const resizeCallback = _debounce(() => {
+    state.width = window.innerWidth
+  }, 500)
+
   onMounted(() => {
     state.width = window.innerWidth
-    window.onresize = () => {
-      state.width = window.innerWidth
-    }
+    window.addEventListener('resize', resizeCallback)
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('resize', resizeCallback)
   })
 
   return {
