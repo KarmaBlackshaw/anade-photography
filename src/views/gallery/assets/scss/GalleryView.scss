@@ -1,0 +1,25 @@
+.masonry {
+  display: flex;
+
+  .masonry__item {
+    .img__figure {
+      overflow: hidden;
+
+      img {
+        transition: 200ms ease;
+        transition-property: filter, transform;
+      }
+    }
+  }
+
+  &:hover img {
+    filter: brightness(0.8);
+  }
+
+  .masonry__item {
+    &:hover img:hover {
+      filter: brightness(1);
+      transform: scale(1.1);
+    }
+  }
+}
