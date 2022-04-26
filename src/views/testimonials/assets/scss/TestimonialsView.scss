@@ -14,7 +14,7 @@
         align-items: center;
 
         .user-container__name {
-          font-size: 1.2em;
+          font-size: theme("fontSize.xl");
           font-weight: 700;
           font-family: Quicksand;
           color: theme("colors.gray.50");
@@ -22,7 +22,7 @@
         }
 
         .user-container__position {
-          font-size: 0.9em;
+          font-size: theme("fontSize.base");
           color: theme("colors.gray.500");
           text-transform: uppercase;
         }
@@ -35,8 +35,5 @@
         }
       }
     }
-  }
-
-  .carousel {
   }
 }

@@ -68,7 +68,7 @@
         }
 
         &.link {
-          font-size: 1.3em;
+          font-size: theme("fontSize.2xl");
         }
       }
     }
@@ -110,7 +110,7 @@
         }
 
         .link {
-          font-size: 14px;
+          font-size: theme("fontSize.base");
           display: flex;
           justify-content: center;
           align-items: center;
