@@ -1,0 +1,33 @@
+.base-masonry {
+  $gap: 5px;
+
+  display: flex;
+  gap: $gap;
+
+  .base-masonry__item {
+    .base-masonry__figure {
+      overflow: hidden;
+
+      img {
+        transition: 200ms ease;
+        transition-property: filter;
+      }
+    }
+  }
+
+  &:hover img {
+    filter: brightness(0.5);
+  }
+
+  .base-masonry__item {
+    &:hover img:hover {
+      filter: brightness(1);
+    }
+  }
+
+  .base-masonry__figure {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+  }
+}
