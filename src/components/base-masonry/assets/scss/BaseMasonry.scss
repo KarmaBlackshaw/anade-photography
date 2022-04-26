@@ -19,7 +19,7 @@
     filter: brightness(0.5);
   }
 
-  .base-masonry__item {
+  .base-masonry__column {
     &:hover img:hover {
       filter: brightness(1);
     }
