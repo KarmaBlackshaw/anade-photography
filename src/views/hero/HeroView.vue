@@ -16,13 +16,18 @@
         class="mb-20"
       />
 
+      <ServicesView
+        id="services"
+        class="mb-20"
+      />
+
       <TestimonialsView
         id="testimonials"
         class="mb-20"
       />
 
-      <ServicesView
-        id="services"
+      <GalleryView
+        id="gallery"
         class="mb-20"
       />
     </div>
@@ -35,6 +40,7 @@ import FlowView from '@/views/flow/FlowView'
 import ServicesView from '@/views/services/ServicesView'
 import AboutView from '@/views/about/AboutView'
 import TestimonialsView from '@/views/testimonials/TestimonialsView'
+import GalleryView from '@/views/gallery/GalleryView'
 
 export default {
   components: {
@@ -42,7 +48,8 @@ export default {
     AboutView,
     FlowView,
     ServicesView,
-    TestimonialsView
+    TestimonialsView,
+    GalleryView
   }
 }
 </script>
