@@ -37,10 +37,17 @@
       />
 
       <div class="navigation__logo">
-        <img
-          src="./assets/images/logo.png"
-          alt=""
+        <router-link
+          v-slot="{ navigate }"
+          to="/"
+          custom
         >
+          <img
+            src="./assets/images/logo.png"
+            alt=""
+            @click="navigate"
+          >
+        </router-link>
       </div>
 
       <div class="navigation__body">
@@ -52,14 +59,14 @@
             <router-link
               v-for="(currTab, tabKey) in tabs"
               :key="tabKey"
-              v-slot="{ navigate, isActive, isExactActive }"
+              v-slot="{ navigate }"
               :to="currTab.to"
               custom
             >
               <li
                 class="link"
                 :class="{
-                  'is-active': isActive || isExactActive
+                  'is-active': route.hash === currTab.to
                 }"
                 @click="navigate"
               >
@@ -75,6 +82,7 @@
 
 <script>
 import { reactive, ref, inject } from 'vue'
+import { useRoute } from 'vue-router'
 
 import TheNavigationHamburger from './components/TheNavigationHamburger'
 
@@ -85,25 +93,28 @@ export default {
 
   setup () {
     const tabs = reactive([
-      { text: 'home',
-        to: '/'
-      },
-      { text: 'about',
+      {
+        text: 'about',
         to: '#about'
       },
-      { text: 'services',
+      {
+        text: 'services',
         to: '#services'
       },
-      { text: 'testimonials',
+      {
+        text: 'testimonials',
         to: '#testimonials'
       },
-      { text: 'portfolio',
-        to: '#portfolio'
+      {
+        text: 'gallery',
+        to: '#gallery'
       },
-      { text: 'contact',
+      {
+        text: 'contact',
         to: '#contact'
       }
     ])
+
 
     const windowScrollY = ref(0)
 
@@ -119,6 +130,8 @@ export default {
 
     return {
       breakpoint: inject('breakpoint'),
+
+      route: useRoute(),
 
       tabs,
       windowScrollY,
