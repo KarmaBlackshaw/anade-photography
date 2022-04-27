@@ -1,7 +1,7 @@
 <template>
   <div class="loader">
     <div class="loader__body">
-      <fingerprint-spinner
+      <loader-icon
         class="loader__img"
         :animation-duration="1500"
         :size="64"
@@ -18,13 +18,13 @@
 </template>
 
 <script>
-import { FingerprintSpinner } from 'epic-spinners'
+import LoaderIcon from './components/LoaderIcon'
 
 export default {
   name: "LoaderView",
 
   components: {
-    FingerprintSpinner
+    LoaderIcon
   }
 }
 </script>
