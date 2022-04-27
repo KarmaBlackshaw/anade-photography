@@ -29,7 +29,6 @@ const router = createRouter({
       el: '#home',
       behavior: 'smooth'
     }
-
   }
 })
 

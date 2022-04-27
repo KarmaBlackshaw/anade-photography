@@ -28,7 +28,8 @@
 </template>
 
 <script>
-import { ref, provide } from 'vue'
+import { ref, provide, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 
 // composables
 import useBreakpoint from '@/composables/useBreakpoint'
@@ -47,12 +48,26 @@ export default {
       breakpoint
     } = useBreakpoint()
 
+    const {
+      hash: routeHash
+    } = useRoute()
+
     provide('breakpoint', breakpoint)
 
     const showLoader = ref(true)
 
     setTimeout(() => {
       showLoader.value = false
+
+      nextTick(() => {
+        const el = document.querySelector(routeHash)
+
+        if (el) {
+          const position = el.getBoundingClientRect()
+
+          window.scrollTo(position.left, position.top - 70);
+        }
+      })
     }, 3000)
 
     return {
