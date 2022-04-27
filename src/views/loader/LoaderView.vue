@@ -1,11 +1,13 @@
 <template>
   <div class="loader">
     <div class="loader__body">
-      <img
+      <fingerprint-spinner
         class="loader__img"
-        src="./assets/svg/puff.svg"
-        alt=""
-      >
+        :animation-duration="1500"
+        :size="64"
+        color="#fff"
+      />
+
       <img
         class="loader__title"
         src="@/assets/images/anade-text-logo.png"
@@ -16,8 +18,14 @@
 </template>
 
 <script>
+import { FingerprintSpinner } from 'epic-spinners'
+
 export default {
-  name: "LoaderView"
+  name: "LoaderView",
+
+  components: {
+    FingerprintSpinner
+  }
 }
 </script>
 
