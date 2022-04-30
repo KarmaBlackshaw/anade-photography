@@ -5,14 +5,14 @@
       'app--loading': showLoader
     }"
   >
-    <Transition name="loader">
+    <!-- <Transition name="loader">
       <div
         v-if="showLoader"
         class="app__loader"
       >
         <Loader />
       </div>
-    </Transition>
+    </Transition> -->
 
     <div class="app__header">
       <TheNavigation class="app__navigation" />
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { ref, provide, nextTick } from 'vue'
+import { ref, provide, nextTick, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 // composables
@@ -56,19 +56,27 @@ export default {
 
     const showLoader = ref(true)
 
-    setTimeout(() => {
-      showLoader.value = false
+    onMounted(() => {
+      setTimeout(() => {
+        showLoader.value = false
 
-      nextTick(() => {
-        const el = document.querySelector(routeHash)
-
-        if (el) {
-          const position = el.getBoundingClientRect()
-
-          window.scrollTo(position.left, position.top - 70);
+        if (!routeHash) {
+          return
         }
-      })
-    }, 3000)
+
+        nextTick(() => {
+
+          const el = document.querySelector(routeHash)
+
+          if (el) {
+            const position = el.getBoundingClientRect()
+
+            window.scrollTo(position.left, position.top - 70)
+          }
+        })
+      }, 0)
+    })
+
 
     return {
       showLoader

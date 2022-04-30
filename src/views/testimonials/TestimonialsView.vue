@@ -54,10 +54,12 @@
 </template>
 
 <script>
-import { ref, inject } from 'vue'
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import { inject } from 'vue'
+import { Splide, SplideSlide } from '@splidejs/vue-splide'
 
-import '@splidejs/vue-splide/css';
+import '@splidejs/vue-splide/css'
+
+// composables
 
 export default {
   components: {

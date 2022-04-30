@@ -21,6 +21,7 @@ module.exports = {
     'array-bracket-spacing': ['error', 'never'],
     'array-callback-return': 'error',
     'arrow-parens': ['error', 'as-needed'],
+    'semi': ['error', 'never'],
     'arrow-spacing': 'error',
     'block-spacing': 'error',
     'brace-style': 'error',
@@ -32,6 +33,7 @@ module.exports = {
       extensions: ['vue'],
       shouldMatchCase: false
     }],
+    "no-multiple-empty-lines": [2, { "max": 1 }],
     'vue/no-unused-properties': ['error', {
       groups: ['props', 'data', 'computed', 'methods']
     }],
@@ -104,4 +106,4 @@ module.exports = {
     'vue/v-on-style': ['error', 'shorthand'],
     'no-labels': 'off'
   }
-};
+}

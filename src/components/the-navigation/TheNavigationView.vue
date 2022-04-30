@@ -2,7 +2,7 @@
   <div
     class="navigation"
     :class="{
-      'navigation--darker': windowScrollY > 800
+      'navigation--darker': windowScrollY > 5
     }"
   >
     <div
@@ -70,7 +70,19 @@
                 }"
                 @click="navigate"
               >
-                {{ currTab.text }}
+                <template v-if="currTab.type === 'button'">
+                  <base-button
+                    outlined
+                    class="capitalize"
+                    color="white"
+                  >
+                    {{ currTab.text }}
+                  </base-button>
+                </template>
+
+                <template v-else>
+                  {{ currTab.text }}
+                </template>
               </li>
             </router-link>
           </ul>
@@ -83,8 +95,10 @@
 <script>
 import { reactive, ref, inject } from 'vue'
 import { useRoute } from 'vue-router'
+import { useEventListener } from '@vueuse/core'
 
 import TheNavigationHamburger from './components/TheNavigationHamburger'
+import _debounce from 'lodash/debounce'
 
 export default {
   components: {
@@ -111,20 +125,20 @@ export default {
       },
       {
         text: 'contact',
-        to: '#contact'
+        to: '#contact',
+        type: 'button'
       }
     ])
 
-
     const windowScrollY = ref(0)
+    useEventListener(window, 'scroll', _debounce(e => {
+      const windowInstance = e.path[1]
 
-    window.addEventListener("scroll", function (){
-      windowScrollY.value = this.scrollY
-    })
+      windowScrollY.value = windowInstance.scrollY
+    }, 100))
 
     const isHamburgerActive = ref(false)
     function toggleHamburger () {
-      console.log('asd')
       isHamburgerActive.value = !isHamburgerActive.value
     }
 

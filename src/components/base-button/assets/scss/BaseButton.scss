@@ -1,0 +1,46 @@
+.base-button {
+  @apply rounded;
+  text-transform: uppercase;
+  transition: 100ms ease;
+  transition-property: border-color, color;
+
+  &.base-button--size-sm {
+    @apply px-3 py-1 text-sm;
+  }
+
+  &.base-button--size-md {
+    @apply px-5 py-2 text-base;
+  }
+
+  &.base-button--size-lg {
+    @apply px-6 py-3 text-lg;
+  }
+
+  &.base-button--color-white {
+    border: 1px solid theme("colors.gray.300");
+    background-color: theme("colors.gray.300");
+    color: theme("colors.gray.900");
+
+    &.base-button--outlined {
+      color: theme("colors.gray.200");
+    }
+
+    &:hover {
+      border: 1px solid theme("colors.gray.200");
+      background-color: theme("colors.gray.200");
+      color: theme("colors.gray.800");
+
+      &.base-button--outlined {
+        color: theme("colors.gray.100");
+      }
+    }
+  }
+
+  &.base-button--outlined {
+    background-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
