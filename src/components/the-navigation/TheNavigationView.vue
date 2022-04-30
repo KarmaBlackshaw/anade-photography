@@ -52,7 +52,7 @@
 
       <div class="navigation__body">
         <div
-          v-if="breakpoint.sm"
+          v-if="breakpoint.md"
           class="navigation__item navigation__item--tabs"
         >
           <ul>

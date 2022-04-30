@@ -16,7 +16,7 @@
     z-index: 4;
     cursor: pointer;
 
-    @include breakpoint_sm {
+    @include breakpoint_md {
       display: none;
     }
   }
@@ -55,7 +55,7 @@
     align-items: center;
     overflow-y: hidden;
 
-    @include breakpoint_sm {
+    @include breakpoint_md {
       display: none;
     }
 
@@ -79,7 +79,7 @@
     width: 100%;
     justify-content: center;
 
-    @include breakpoint_sm {
+    @include breakpoint_md {
       justify-content: flex-start;
     }
 
@@ -88,8 +88,8 @@
       z-index: 4;
       height: 20px;
 
-      @include breakpoint_sm {
-        height: 25px;
+      @include breakpoint_md {
+        height: 20px;
       }
     }
   }
@@ -111,10 +111,16 @@
         }
 
         .link {
-          font-size: theme("fontSize.base");
+          font-size: theme("fontSize.sm");
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: 100ms ease-in-out;
+          transition-property: font-size;
+
+          @include breakpoint_lg {
+            font-size: theme("fontSize.base");
+          }
         }
       }
     }
