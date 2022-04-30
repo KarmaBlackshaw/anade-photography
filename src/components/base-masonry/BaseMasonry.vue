@@ -10,7 +10,7 @@
           v-for="src in chunkedImages[i]"
           :key="src"
           :src="src"
-          alt=""
+          :alt="`Image ${i}`"
         >
       </div>
     </div>
