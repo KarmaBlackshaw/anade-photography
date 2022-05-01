@@ -5,14 +5,14 @@
       'app--loading': showLoader
     }"
   >
-    <!-- <Transition name="loader">
+    <Transition name="loader">
       <div
         v-if="showLoader"
         class="app__loader"
       >
         <Loader />
       </div>
-    </Transition> -->
+    </Transition>
 
     <div class="app__header">
       <TheNavigation class="app__navigation" />
@@ -77,7 +77,7 @@ export default {
             window.scrollTo(position.left, position.top - 70)
           }
         })
-      }, 0)
+      }, 2500)
     })
 
     return {
