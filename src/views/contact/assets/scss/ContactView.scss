@@ -16,15 +16,19 @@
 
   .contact__socials-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 10px;
     grid-template-rows: auto;
 
     .socials__img {
       filter: opacity(0.3);
       transition: 200ms ease;
       transition-property: filter, transform;
-      height: 50px;
+      height: 30px;
+
+      @include breakpoint_md {
+        height: 50px;
+      }
 
       &:hover {
         filter: opacity(1);

@@ -9,7 +9,7 @@
     </base-section-subtitle>
 
     <base-section-body class="contact__content mb-10">
-      Although I'm not currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+      Although I'm not currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, or interested in working together, I'll try my best to get back to you!
     </base-section-body>
 
     <base-section-body class="contact__btn-container mb-20">

@@ -1,0 +1,15 @@
+.the-footer {
+  width: 100%;
+  background-color: theme("colors.neutral.800");
+  color: theme("colors.neutral.200");
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .the-footer__body {
+    font-family: Poppins;
+    font-size: 13px;
+    font-weight: 300;
+  }
+}

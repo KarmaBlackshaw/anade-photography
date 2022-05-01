@@ -23,6 +23,7 @@
     </div>
 
     <div class="app__footer">
+      <TheFooter />
     </div>
   </div>
 </template>
@@ -34,12 +35,14 @@ import { useRoute } from 'vue-router'
 // composables
 import useBreakpoint from '@/composables/useBreakpoint'
 
-import TheNavigation from './components/the-navigation/TheNavigationView'
+import TheNavigation from './components/the-navigation/TheNavigation'
+import TheFooter from './components/the-footer/TheFooter'
 import Loader from '@/views/loader/LoaderView'
 
 export default {
   components: {
     TheNavigation,
+    TheFooter,
     Loader
   },
 
@@ -76,7 +79,6 @@ export default {
         })
       }, 0)
     })
-
 
     return {
       showLoader

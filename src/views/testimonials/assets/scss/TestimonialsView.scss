@@ -1,5 +1,10 @@
 .testimonials {
   .testimonial-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     .testimonial-card__body {
       color: theme("colors.gray.50");
       margin-bottom: 30px;
@@ -8,6 +13,7 @@
     }
 
     .testimonial-card__footer {
+      margin-top: auto;
       .user-container {
         display: flex;
         justify-content: space-between;

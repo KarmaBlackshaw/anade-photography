@@ -158,5 +158,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './assets/scss/TheNavigationView';
+@import './assets/scss/TheNavigation';
 </style>
