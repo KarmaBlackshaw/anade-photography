@@ -36,8 +36,11 @@
                   <div class="user-container__name">
                     {{ testimonial.author }}
                   </div>
-                  <div class="user-container__position">
-                    CEO
+                  <div
+                    v-if="testimonial.position"
+                    class="user-container__position"
+                  >
+                    {{ testimonial.position }}
                   </div>
                 </div>
               </div>
@@ -72,7 +75,7 @@ export default {
       },
       {
         author: 'Idda',
-        position: '',
+        position: 'Teacher',
         content: "One of the best photographers in town and shoots uniquely, more shoots in the future please haha"
       },
       {
@@ -102,7 +105,7 @@ export default {
       },
       {
         author: 'Reggie Rams',
-        position: '',
+        position: 'Photographer',
         content: "Bongga kaayo nga photographer. Unique ideas and always trying to come up with a new theme or style."
       },
       {
