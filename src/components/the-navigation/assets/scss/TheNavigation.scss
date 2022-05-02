@@ -86,9 +86,9 @@
     img {
       cursor: pointer;
       z-index: 4;
-      height: 20px;
+      height: 15px;
 
-      @include breakpoint_md {
+      @include breakpoint_sm {
         height: 20px;
       }
     }
