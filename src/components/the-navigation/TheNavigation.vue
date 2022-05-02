@@ -98,7 +98,7 @@ import { useRoute } from 'vue-router'
 import { useEventListener } from '@vueuse/core'
 
 import TheNavigationHamburger from './components/TheNavigationHamburger'
-import _debounce from 'lodash/debounce'
+import _throttle from 'lodash/throttle'
 
 export default {
   components: {
@@ -131,7 +131,7 @@ export default {
     ])
 
     const windowScrollY = ref(0)
-    useEventListener(window, 'scroll', _debounce(e => {
+    useEventListener(window, 'scroll', _throttle(e => {
       const windowInstance = e.path[1]
 
       windowScrollY.value = windowInstance.scrollY

@@ -5,15 +5,16 @@
   >
     <HomeView
       id="home"
-      class="mb-20"
     />
 
-    <div class="container mx-auto px-10 py-5 sm:px-20">
-      <FlowView
-        id="flow"
-        class="mb-20"
-      />
-    </div>
+    <section class="flow">
+      <div class="container mx-auto px-10 py-10 sm:px-20">
+        <FlowView
+          id="flow"
+          class="mb-20"
+        />
+      </div>
+    </section>
 
     <div class="container mx-auto px-10 py-5 sm:px-20">
       <AboutView
