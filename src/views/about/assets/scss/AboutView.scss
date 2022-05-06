@@ -61,9 +61,17 @@
   .about__list {
     .about__item {
       display: flex;
-      margin-bottom: 20px;
+      margin-bottom: 50px;
       gap: 20px;
       flex-wrap: wrap;
+
+      .item__img-figure,
+      .item__aside {
+        @include breakpoint_sm {
+          flex: 1 1 0;
+          width: 0;
+        }
+      }
 
       @include breakpoint_sm {
         flex-wrap: nowrap;
@@ -77,6 +85,7 @@
         height: 200px;
         overflow: hidden;
         border-radius: 10px;
+
         @apply shadow-md;
 
         img {

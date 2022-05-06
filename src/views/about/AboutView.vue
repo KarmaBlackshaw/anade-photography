@@ -54,7 +54,7 @@
             Personal Level
           </div>
           <div class="item__body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit earum mollitia velit soluta sint quis atque possimus pariatur! Illo assumenda rem debitis sint mollitia earum dolor quisquam doloremque voluptatum laudantium molestias reiciendis, maxime minima, neque, voluptatem repellendus unde molestiae culpa. Natus, unde amet laboriosam dolorum asperiores veniam. Amet, qui excepturi similique a veniam dolorum
+            A Tacloban City based photographer who started doing photography as a hobby and for fun and now became a freelance photographer.
           </div>
         </div>
       </div>
