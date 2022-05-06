@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import _sample from "lodash/sample";
+import _sample from "lodash/sample"
 
 export default {
   setup () {
@@ -75,9 +75,9 @@ export default {
 
     return {
       services
-    };
+    }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
