@@ -5,10 +5,12 @@
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 2;
   transition: background-color 500ms ease;
-
-  &.navigation--darker {
-    background-color: rgba(0, 0, 0, 0.9);
-  }
+  /* From https://css.glass */
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12.7px);
+  -webkit-backdrop-filter: blur(12.7px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 
   .navigation__hamburger {
     position: absolute;
@@ -54,6 +56,10 @@
     justify-content: center;
     align-items: center;
     overflow-y: hidden;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12.7px);
+    -webkit-backdrop-filter: blur(12.7px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
 
     @include breakpoint_md {
       display: none;
