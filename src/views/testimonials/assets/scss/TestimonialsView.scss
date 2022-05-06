@@ -6,31 +6,40 @@
     justify-content: space-between;
 
     .testimonial-card__body {
-      color: theme("colors.gray.50");
-      margin-bottom: 30px;
-      font-family: Quicksand;
-      font-style: italic;
+      &.testimonial-card__body--img {
+        display: flex;
+        justify-content: center;
+      }
+
+      &.testimonial-card__body--content {
+        display: flex;
+        justify-content: center;
+        font-family: Quicksand;
+        font-size: theme("fontSize.sm");
+        text-align: center;
+        color: theme("colors.gray.50");
+        margin-bottom: 20px;
+      }
     }
 
     .testimonial-card__footer {
       margin-top: auto;
-      .user-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
 
+      .user-container {
         .user-container__name {
-          font-size: theme("fontSize.xl");
-          font-weight: 700;
+          font-size: theme("fontSize.lg");
+          font-weight: 400;
+          text-align: center;
           font-family: Quicksand;
           color: theme("colors.gray.50");
           @apply tracking-wide;
         }
 
         .user-container__position {
-          font-size: theme("fontSize.base");
+          font-size: theme("fontSize.sm");
           color: theme("colors.gray.500");
-          text-transform: uppercase;
+          text-align: center;
+          text-transform: capitalize;
         }
 
         .user-container__icon {

@@ -26,8 +26,15 @@
           :key="testimonialKey"
         >
           <base-card class="testimonial-card">
-            <base-card-subtitle class="testimonial-card__body">
-              "{{ testimonial.content }}"
+            <base-card-subtitle class="testimonial-card__body testimonial-card__body--img">
+              <img
+                src="./assets/images/quote.png"
+                alt=""
+              >
+            </base-card-subtitle>
+
+            <base-card-subtitle class="testimonial-card__body testimonial-card__body--content">
+              {{ testimonial.content }}
             </base-card-subtitle>
 
             <base-card-subtitle class="testimonial-card__footer">
