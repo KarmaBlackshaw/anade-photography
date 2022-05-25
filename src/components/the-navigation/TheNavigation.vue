@@ -1,5 +1,5 @@
 <template>
-  <div
+  <header
     class="navigation"
     :class="{
       'navigation--darker': windowScrollY > 5
@@ -89,7 +89,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -109,32 +109,35 @@ export default {
     const tabs = reactive([
       {
         text: 'about',
-        to: '#about'
+        to: '/#about'
       },
       {
         text: 'services',
-        to: '#services'
+        to: '/#services'
       },
       {
         text: 'testimonials',
-        to: '#testimonials'
+        to: '/#testimonials'
       },
       {
         text: 'gallery',
-        to: '#gallery'
+        to: '/#gallery'
       },
       {
         text: 'contact',
-        to: '#contact',
+        to: '/#contact',
+        type: 'button'
+      },
+      {
+        text: 'login',
+        to: { name: 'login' },
         type: 'button'
       }
     ])
 
     const windowScrollY = ref(0)
-    useEventListener(window, 'scroll', _throttle(e => {
-      const windowInstance = e.path[1]
-
-      windowScrollY.value = windowInstance.scrollY
+    useEventListener(window, 'scroll', _throttle(() => {
+      windowScrollY.value = window.scrollY
     }, 100))
 
     const isHamburgerActive = ref(false)

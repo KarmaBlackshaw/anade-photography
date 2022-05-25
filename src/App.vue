@@ -1,9 +1,6 @@
 <template>
   <div
     class="app"
-    :class="{
-      'app--loading': showLoader
-    }"
   >
     <Transition name="loader">
       <div
@@ -63,21 +60,21 @@ export default {
       setTimeout(() => {
         showLoader.value = false
 
-        if (!routeHash) {
-          return
-        }
+        // if (!routeHash) {
+        //   return
+        // }
 
-        nextTick(() => {
+        // nextTick(() => {
 
-          const el = document.querySelector(routeHash)
+        //   const el = document.querySelector(routeHash)
 
-          if (el) {
-            const position = el.getBoundingClientRect()
+        //   if (el) {
+        //     const position = el.getBoundingClientRect()
 
-            window.scrollTo(position.left, position.top - 70)
-          }
-        })
-      }, 500)
+        //     window.scrollTo(position.left, position.top - 70)
+        //   }
+        // })
+      }, 2000)
     })
 
     return {

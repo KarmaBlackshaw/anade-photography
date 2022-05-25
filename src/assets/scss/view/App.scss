@@ -5,6 +5,20 @@ body {
 .app {
   min-height: 100vh;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  .app__header,
+  .app__footer {
+    flex-shrink: 1;
+  }
+
+  .app__body {
+    flex-grow: 1;
+    height: 100%;
+    border: 1px solid violet;
+  }
 
   &.app--loading {
     height: 100vh;
@@ -12,7 +26,7 @@ body {
   }
 
   .app__loader {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100vh;
     z-index: 99;

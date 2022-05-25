@@ -6,6 +6,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: HeroView
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/LoginView')
   }
 ]
 
