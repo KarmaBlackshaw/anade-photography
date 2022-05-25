@@ -127,12 +127,12 @@ export default {
         text: 'contact',
         to: '/#contact',
         type: 'button'
-      },
-      {
-        text: 'login',
-        to: { name: 'login' },
-        type: 'button'
       }
+      // {
+      //   text: 'login',
+      //   to: { name: 'login' },
+      //   type: 'button'
+      // }
     ])
 
     const windowScrollY = ref(0)
