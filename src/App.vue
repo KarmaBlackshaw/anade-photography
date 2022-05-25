@@ -77,7 +77,7 @@ export default {
             window.scrollTo(position.left, position.top - 70)
           }
         })
-      }, 2500)
+      }, 500)
     })
 
     return {
