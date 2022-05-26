@@ -11,6 +11,19 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import('@/views/login/LoginView')
+  },
+  {
+    path: '/about/management',
+    name: 'about-mgmt',
+    meta: {
+      auth: true
+    },
+    component: () => import('@/views/about-management/AboutMgmt')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'page-not-found',
+    component: () => import('@/views/page-not-found/PageNotFound')
   }
 ]
 
