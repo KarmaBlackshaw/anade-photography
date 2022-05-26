@@ -1,0 +1,29 @@
+.about-management {
+  height: 100%;
+
+  .about-td {
+    .td__thumbnail {
+      img {
+        width: 70px;
+        height: 70px;
+        border-radius: 10px;
+      }
+    }
+
+    .td__actions {
+      min-width: 100px;
+      height: 100%;
+
+      img {
+        max-width: 15px;
+        cursor: pointer;
+        margin-left: auto;
+        margin-right: auto;
+
+        &:not(:last-child) {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

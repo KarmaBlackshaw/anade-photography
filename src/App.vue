@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="app"
-  >
+  <div class="app">
     <Transition name="loader">
       <div
         v-if="showLoader"
@@ -11,22 +9,31 @@
       </div>
     </Transition>
 
-    <div class="app__header">
-      <TheNavigation class="app__navigation" />
+    <TheNavigation
+      class="app__header app__navigation"
+      :class="navigationPosition"
+    />
+
+    <div
+      v-if="route.meta.auth"
+      class="app__dashboard"
+    >
+      <TheSidebar class="dashboard__sidebar" />
+
+      <router-view class="dashboard__body" />
     </div>
 
-    <div class="app__body">
-      <router-view />
-    </div>
+    <router-view
+      v-else
+      class="app__body"
+    />
 
-    <div class="app__footer">
-      <TheFooter />
-    </div>
+    <TheFooter class="app__footer" />
   </div>
 </template>
 
 <script>
-import { ref, provide, nextTick, onMounted } from 'vue'
+import { ref, provide, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 // composables
@@ -34,10 +41,12 @@ import useBreakpoint from '@/composables/useBreakpoint'
 
 import TheNavigation from './components/the-navigation/TheNavigation'
 import TheFooter from './components/the-footer/TheFooter'
+import TheSidebar from './components/the-sidebar/TheSidebar'
 import Loader from '@/views/loader/LoaderView'
 
 export default {
   components: {
+    TheSidebar,
     TheNavigation,
     TheFooter,
     Loader
@@ -48,37 +57,28 @@ export default {
       breakpoint
     } = useBreakpoint()
 
-    const {
-      hash: routeHash
-    } = useRoute()
+    const route = useRoute()
 
     provide('breakpoint', breakpoint)
 
-    const showLoader = ref(true)
+    const navigationPosition = computed(() => {
+      return route.meta.auth ? 'relative' : 'fixed'
+    })
+
+    const showLoader = ref(false)
 
     onMounted(() => {
       setTimeout(() => {
         showLoader.value = false
-
-        // if (!routeHash) {
-        //   return
-        // }
-
-        // nextTick(() => {
-
-        //   const el = document.querySelector(routeHash)
-
-        //   if (el) {
-        //     const position = el.getBoundingClientRect()
-
-        //     window.scrollTo(position.left, position.top - 70)
-        //   }
-        // })
       }, 2000)
     })
 
     return {
-      showLoader
+      navigationPosition,
+
+      showLoader,
+
+      route
     }
   }
 }

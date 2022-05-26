@@ -1,19 +1,21 @@
 .base-button {
-  @apply rounded;
+  @apply rounded tracking-wider;
   text-transform: uppercase;
   transition: 100ms ease;
   transition-property: border-color, color;
+  font-weight: 600;
 
   &.base-button--size-sm {
     @apply px-3 py-1 text-sm;
   }
 
   &.base-button--size-md {
-    @apply px-5 py-2 text-base;
+    @apply px-5 py-3;
+    font-size: 13px;
   }
 
   &.base-button--size-lg {
-    @apply px-6 py-3 text-lg;
+    @apply px-6 py-4 text-lg;
   }
 
   &.base-button--color-white {

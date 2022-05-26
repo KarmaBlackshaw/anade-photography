@@ -31,8 +31,7 @@ export default {
 
     color: {
       type: String,
-      default: '',
-      required: true
+      default: ''
     },
 
     outlined: {

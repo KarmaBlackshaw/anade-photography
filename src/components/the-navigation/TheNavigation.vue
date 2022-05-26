@@ -66,18 +66,16 @@
               <li
                 class="link"
                 :class="{
-                  'is-active': route.hash === currTab.to
+                  'is-active': `/${route.hash}` === currTab.to
                 }"
                 @click="navigate"
               >
                 <template v-if="currTab.type === 'button'">
-                  <base-button
-                    outlined
-                    class="capitalize"
-                    color="white"
+                  <button
+                    class="navigation__btn"
                   >
                     {{ currTab.text }}
-                  </base-button>
+                  </button>
                 </template>
 
                 <template v-else>
@@ -127,12 +125,12 @@ export default {
         text: 'contact',
         to: '/#contact',
         type: 'button'
+      },
+      {
+        text: 'login',
+        to: { name: 'login' },
+        type: 'button'
       }
-      // {
-      //   text: 'login',
-      //   to: { name: 'login' },
-      //   type: 'button'
-      // }
     ])
 
     const windowScrollY = ref(0)

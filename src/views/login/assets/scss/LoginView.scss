@@ -1,3 +1,58 @@
 .login {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .input {
+    padding: 8px 16px;
+    border-radius: 5px;
+    color: theme("colors.gray.700");
+  }
+
+  .login__card {
+    width: 90%;
+    max-width: 400px;
+
+    .login__title {
+      margin-bottom: 20px;
+    }
+
+    .login__body {
+      display: flex;
+      flex-direction: column;
+
+      & > * {
+        &:not(:last-child) {
+          margin-bottom: 15px;
+        }
+      }
+    }
+
+    .login__btn {
+      background-color: theme("colors.blue.500");
+      color: theme("colors.sky.50");
+      width: 100%;
+
+      &.login__btn--google {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        color: theme("colors.gray.700");
+
+        img {
+          height: 20px;
+          width: 20px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .divider {
+    height: 1px;
+    background-color: theme("colors.gray.400");
+  }
 }

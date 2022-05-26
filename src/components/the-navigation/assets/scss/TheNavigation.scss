@@ -1,6 +1,5 @@
 .navigation {
   height: 64px;
-  position: fixed;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 2;
@@ -101,6 +100,17 @@
         height: 20px;
       }
     }
+  }
+
+  .navigation__btn {
+    @apply px-5 py-2 text-base rounded tracking-wider;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: 100ms ease;
+    transition-property: border-color, color;
+    border: 1px solid theme("colors.gray.300");
+    color: theme("colors.gray.300");
+    text-transform: capitalize;
   }
 
   .navigation__item {
