@@ -23,24 +23,22 @@
               <base-td>
                 Lorem ipsum dolor sit
               </base-td>
+
               <base-td class="truncate">
-                amet consectetur adipisicing elit. Aspernatur exercitationem officia, aut soluta expedita ipsam delectus nostrum sit porro excepturi esse ipsum dolorum sequi perspiciatis, explicabo id officiis. Voluptate, mollitia.
+                {{ truncate('Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos delectus dolores possimus eum consequatur impedit laborum odio voluptas ut, vel incidunt quas laudantium ratione beatae pariatur exercitationem explicabo culpa eos?', 30) }}
               </base-td>
+
               <base-td class="td__thumbnail">
                 <img
                   src="https://images.pexels.com/photos/10334838/pexels-photo-10334838.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
                   alt=""
                 >
               </base-td>
+
               <base-td class="td__actions">
-                <img
-                  src="@/assets/images/edit.svg"
-                  alt=""
-                >
-                <img
-                  src="@/assets/images/trash-2.svg"
-                  alt=""
-                >
+                <base-icon-edit class="actions__icon" />
+
+                <base-icon-trash class="actions__icon" />
               </base-td>
             </base-tr>
           </base-tbody>
@@ -53,7 +51,17 @@
 <script>
 
 export default {
+  setup () {
+    function truncate (str, length, suffix = '...') {
+      return str.length > length
+        ?str.substring(0, length) + suffix
+        : str
+    }
 
+    return {
+      truncate
+    }
+  }
 }
 </script>
 
