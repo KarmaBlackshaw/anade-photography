@@ -10,13 +10,24 @@
 
         <span>Ernie Jeash</span>
       </li>
-      <li
+
+      <router-link
         v-for="(tab, tabKey) in tabs"
         :key="tabKey"
-        class="tab__item tab__item--link"
+        v-slot="{ navigate, isActive, isExactActive }"
+        custom
+        :to="tab.to"
       >
-        {{ tab.text }}
-      </li>
+        <li
+          class="tab__item tab-link"
+          :class="{
+            'tab-link--active': isActive
+          }"
+          @click="navigate"
+        >
+          {{ tab.text }}
+        </li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -33,34 +44,31 @@ export default {
     const tabs = reactive([
       {
         text: 'Hero',
-        to: '/#about'
+        to: { name: 'hero-mgmt' }
       },
       {
         text: 'Flow',
-        to: '/#services'
+        to: { name: 'flow-mgmt' }
       },
       {
         text: 'About Me',
-        to: '/#testimonials'
+        to: { name: 'about-mgmt' }
       },
       {
         text: 'Services',
-        to: '/#gallery'
+        to: { name: 'services-mgmt' }
       },
       {
-        text: 'Testimonias',
-        to: '/#contact',
-        type: 'button'
+        text: 'Testimonials',
+        to: { name: 'testimonials-mgmt' }
       },
       {
         text: 'Gallery',
-        to: { name: 'login' },
-        type: 'button'
+        to: { name: 'gallery-mgmt' }
       },
       {
         text: 'Socials',
-        to: { name: 'login' },
-        type: 'button'
+        to: { name: 'socials-mgmt' }
       }
     ])
 
