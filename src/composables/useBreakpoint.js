@@ -1,4 +1,7 @@
-import { onMounted, onUnmounted, reactive, computed } from 'vue'
+import { reactive } from 'vue'
+import { useEventListener } from '@vueuse/core'
+
+// libs
 import _debounce from 'lodash/debounce'
 
 export default () => {
@@ -6,38 +9,37 @@ export default () => {
     width: 0
   })
 
-  const breakpoint = computed(() => {
-    const width = state.width
+  const sizes = {
+    sm: 640,
+    md: 768,
+    lg: 1024,
+    xl: 1280
+  }
 
-    const _isMin = a => width >= a
-
-    const screenSmMin = 640
-    const screenMdMin = 768
-    const screenLgMin = 1024
-    const screenXlMin = 1280
-
-    const breakpoints = {
-      sm: _isMin(screenSmMin),
-      md: _isMin(screenMdMin),
-      lg: _isMin(screenLgMin),
-      xl: _isMin(screenXlMin)
-    }
-
-    return breakpoints
+  const breakpoint = reactive({
+    sm: false,
+    md: false,
+    lg: false,
+    xl: false
   })
 
+  /**
+   * Handle resize
+   */
   const resizeCallback = _debounce(() => {
-    state.width = window.innerWidth
+    const width = window.innerWidth
+
+    state.width = width
+
+    for (const size in sizes) {
+      const breakpointWidth = sizes[size]
+
+      breakpoint[size] = width >= breakpointWidth
+    }
   }, 10)
 
-  onMounted(() => {
-    state.width = window.innerWidth
-    window.addEventListener('resize', resizeCallback)
-  })
-
-  onUnmounted(() => {
-    window.removeEventListener('resize', resizeCallback)
-  })
+  resizeCallback()
+  useEventListener(window, 'resize', resizeCallback)
 
   return {
     breakpoint
