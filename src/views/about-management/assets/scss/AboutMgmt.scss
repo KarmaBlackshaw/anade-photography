@@ -13,15 +13,15 @@
     .td__actions {
       min-width: 100px;
       height: 100%;
+      text-align: center;
 
-      img {
-        max-width: 15px;
+      .actions__icon {
+        width: 18px;
         cursor: pointer;
-        margin-left: auto;
-        margin-right: auto;
+        margin: auto;
 
         &:not(:last-child) {
-          margin-bottom: 10px;
+          margin-bottom: 5px;
         }
       }
     }
