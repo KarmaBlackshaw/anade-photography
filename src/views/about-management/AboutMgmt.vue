@@ -1,3 +1,17 @@
+
+<script setup>
+import { ref } from 'vue'
+
+const truncateString = (string, maxLength) => {
+  return string.length > maxLength
+    ? `${string.substring(0, maxLength)}…`
+    : string
+}
+
+const modal = ref(false)
+
+</script>
+
 <template>
   <section
     id="about-management"
@@ -66,28 +80,6 @@
     </base-modal>
   </section>
 </template>
-
-<script>
-import { ref } from 'vue'
-
-export default {
-  setup () {
-    const truncateString = (string, maxLength) => {
-      return string.length > maxLength
-        ? `${string.substring(0, maxLength)}…`
-        : string
-    }
-
-    const modal = ref(false)
-
-    return {
-      modal,
-
-      truncateString
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 @import './assets/scss/AboutMgmt';
