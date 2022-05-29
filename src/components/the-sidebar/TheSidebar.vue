@@ -1,3 +1,40 @@
+
+<script setup>
+import { reactive } from 'vue'
+
+const tabs = reactive([
+  {
+    text: 'Hero',
+    to: { name: 'hero-mgmt' }
+  },
+  {
+    text: 'Flow',
+    to: { name: 'flow-mgmt' }
+  },
+  {
+    text: 'About Me',
+    to: { name: 'about-mgmt' }
+  },
+  {
+    text: 'Services',
+    to: { name: 'services-mgmt' }
+  },
+  {
+    text: 'Testimonials',
+    to: { name: 'testimonials-mgmt' }
+  },
+  {
+    text: 'Gallery',
+    to: { name: 'gallery-mgmt' }
+  },
+  {
+    text: 'Socials',
+    to: { name: 'socials-mgmt' }
+  }
+])
+
+</script>
+
 <template>
   <div class="sidebar">
     <ul class="tab">
@@ -14,7 +51,7 @@
       <router-link
         v-for="(tab, tabKey) in tabs"
         :key="tabKey"
-        v-slot="{ navigate, isActive, isExactActive }"
+        v-slot="{ navigate, isActive, }"
         custom
         :to="tab.to"
       >
@@ -31,71 +68,6 @@
     </ul>
   </div>
 </template>
-
-<script>
-import { reactive, ref, inject } from 'vue'
-import { useRoute } from 'vue-router'
-import { useEventListener } from '@vueuse/core'
-
-import _throttle from 'lodash/throttle'
-
-export default {
-  setup () {
-    const tabs = reactive([
-      {
-        text: 'Hero',
-        to: { name: 'hero-mgmt' }
-      },
-      {
-        text: 'Flow',
-        to: { name: 'flow-mgmt' }
-      },
-      {
-        text: 'About Me',
-        to: { name: 'about-mgmt' }
-      },
-      {
-        text: 'Services',
-        to: { name: 'services-mgmt' }
-      },
-      {
-        text: 'Testimonials',
-        to: { name: 'testimonials-mgmt' }
-      },
-      {
-        text: 'Gallery',
-        to: { name: 'gallery-mgmt' }
-      },
-      {
-        text: 'Socials',
-        to: { name: 'socials-mgmt' }
-      }
-    ])
-
-    const windowScrollY = ref(0)
-    useEventListener(window, 'scroll', _throttle(() => {
-      windowScrollY.value = window.scrollY
-    }, 100))
-
-    const isHamburgerActive = ref(false)
-    function toggleHamburger () {
-      isHamburgerActive.value = !isHamburgerActive.value
-    }
-
-    return {
-      breakpoint: inject('breakpoint'),
-
-      route: useRoute(),
-
-      tabs,
-      windowScrollY,
-
-      isHamburgerActive,
-      toggleHamburger
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 @import './assets/scss/TheSidebar';
