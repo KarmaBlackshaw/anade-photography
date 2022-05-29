@@ -1,3 +1,19 @@
+
+<script setup>
+defineProps({
+  modelValue: {
+    type: [Number, Boolean],
+    default: false
+  }
+})
+
+const emit = defineEmits(['update:modelValue'])
+
+function triggerClose () {
+  emit('update:modelValue', false)
+}
+</script>
+
 <template>
   <Transition name="fade">
     <div
@@ -30,29 +46,6 @@
     </div>
   </Transition>
 </template>
-
-<script>
-export default {
-  props: {
-    modelValue: {
-      type: [Number, Boolean],
-      default: false
-    }
-  },
-
-  emits: ['update:modelValue'],
-
-  setup (_, ctx) {
-    function triggerClose () {
-      ctx.emit('update:modelValue', false)
-    }
-
-    return {
-      triggerClose
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 @import './assets/scss/BaseModal';
