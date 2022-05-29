@@ -14,9 +14,7 @@
 
     <base-section-body class="contact__btn-container mb-20">
       <base-button
-        outlined
-        color="white"
-        size-lg
+        size="lg"
         @click="test"
       >
         Say Hello
