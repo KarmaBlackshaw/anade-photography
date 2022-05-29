@@ -5,7 +5,7 @@
   >
     <base-card class="bg-transparent">
       <base-card-title>
-        About Management
+        Hero Management
       </base-card-title>
 
       <base-card-body>
