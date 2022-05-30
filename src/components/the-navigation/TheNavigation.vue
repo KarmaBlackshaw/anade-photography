@@ -71,11 +71,10 @@
                 @click="navigate"
               >
                 <template v-if="currTab.type === 'button'">
-                  <button
-                    class="navigation__btn"
-                  >
+                  <!-- class="navigation__btn" -->
+                  <base-button>
                     {{ currTab.text }}
-                  </button>
+                  </base-button>
                 </template>
 
                 <template v-else>
@@ -124,11 +123,6 @@ export default {
       {
         text: 'contact',
         to: '/#contact',
-        type: 'button'
-      },
-      {
-        text: 'login',
-        to: { name: 'login' },
         type: 'button'
       }
     ])

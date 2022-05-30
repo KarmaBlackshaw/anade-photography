@@ -75,12 +75,12 @@
         </div>
 
         <div class="introduction__actions">
-          <button
-            class="btn"
+          <base-button
+            class="bg-sky-500 text-sky-50 border-none"
             @click="$router.push({hash: '#contact'})"
           >
             Book Now
-          </button>
+          </base-button>
         </div>
       </div>
     </div>

@@ -4,9 +4,13 @@
   transition: 100ms ease;
   transition-property: border-color, color;
   font-weight: 600;
+  transition: 100ms ease;
+  transition-property: border-color, color;
+  border: 1px solid theme("colors.gray.300");
+  color: theme("colors.gray.300");
 
   &.base-button--size-sm {
-    @apply px-3 py-1 text-sm;
+    @apply px-3 py-2 text-sm;
   }
 
   &.base-button--size-md {

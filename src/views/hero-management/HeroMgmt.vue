@@ -1,13 +1,3 @@
-<script setup>
-import { ref } from 'vue'
-const truncateString = (string, maxLength) => {
-  return string.length > maxLength
-    ? `${string.substring(0, maxLength)}…`
-    : string
-}
-const modal = ref(false)
-</script>
-
 <template>
   <section
     id="about-management"
@@ -15,7 +5,7 @@ const modal = ref(false)
   >
     <base-card class="bg-transparent">
       <base-card-title>
-        About Management
+        Hero Management
       </base-card-title>
 
       <base-card-body>
@@ -77,6 +67,28 @@ const modal = ref(false)
   </section>
 </template>
 
+<script>
+import { ref } from 'vue'
+
+export default {
+  setup () {
+    const truncateString = (string, maxLength) => {
+      return string.length > maxLength
+        ? `${string.substring(0, maxLength)}…`
+        : string
+    }
+
+    const modal = ref(false)
+
+    return {
+      modal,
+
+      truncateString
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
-@import './assets/scss/AboutMgmt';
+@import './assets/scss/HeroMgmt';
 </style>

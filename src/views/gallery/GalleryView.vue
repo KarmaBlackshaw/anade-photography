@@ -40,7 +40,7 @@ export default {
     const breakpoint = inject('breakpoint')
 
     const columns = computed(() => {
-      return breakpoint.value.md ? 3 : 2
+      return breakpoint.md ? 3 : 2
     })
 
     const chunkedImages = computed(() => {

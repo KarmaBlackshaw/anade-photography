@@ -1,11 +1,28 @@
+
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+
+import useTestimonials from '@/composables/useTestimonials'
+
+const {
+  store: storeTestimonial
+} = useTestimonials()
+
+onMounted(async () => {
+  await storeTestimonial({
+    content: 'test',
+    name: 'test',
+    position: 'test'
+  })
+})
+
 const truncateString = (string, maxLength) => {
   return string.length > maxLength
     ? `${string.substring(0, maxLength)}…`
     : string
 }
-const modal = ref(false)
+
+const createModal = ref(true)
 </script>
 
 <template>
@@ -14,8 +31,15 @@ const modal = ref(false)
     class="about-management"
   >
     <base-card class="bg-transparent">
-      <base-card-title>
-        About Management
+      <base-card-title class="flex justify-between">
+        Testimonials Management
+
+        <base-button
+          size="sm"
+          @click="createModal = true"
+        >
+          Add
+        </base-button>
       </base-card-title>
 
       <base-card-body>
@@ -65,11 +89,26 @@ const modal = ref(false)
       </base-card-body>
     </base-card>
 
-    <base-modal v-model="modal">
+    <base-modal v-model="createModal">
       <template #header>
-        header
+        Create Testimonial
       </template>
-      asfasdf
+
+      <base-input
+        label="Name"
+        placeholder="Name"
+      />
+
+      <base-input
+        label="Position"
+        placeholder="Position"
+      />
+
+      <base-textarea
+        label="Content"
+        placeholder="Content"
+      />
+
       <template #footer>
         footer
       </template>
@@ -78,5 +117,5 @@ const modal = ref(false)
 </template>
 
 <style lang="scss" scoped>
-@import './assets/scss/AboutMgmt';
+@import './assets/scss/TestimonialsMgmt';
 </style>

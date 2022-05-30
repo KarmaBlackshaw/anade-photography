@@ -1,23 +1,36 @@
+<script setup>
+defineProps({
+  modelValue: {
+    type: [Number, Boolean],
+    default: false
+  }
+})
+const emit = defineEmits(['update:modelValue'])
+function triggerClose () {
+  emit('update:modelValue', false)
+}
+</script>
+
 <template>
-  <Transition
-    v-if="value"
-    name="fade"
-  >
+  <Transition name="fade">
     <div
+      v-if="modelValue"
       class="modal-container"
-      @click="$emit('input', false)"
+      @click.self="triggerClose"
     >
       <div class="modal">
         <!-- Header -->
         <div class="modal__header">
           <slot name="header"></slot>
 
-          <BaseIconX
-            class="close"
-            color="#EF4444"
+          <base-icon-close
+            class="icon-close"
+            color="#F87171"
+            @click="triggerClose"
           />
         </div>
 
+        <!-- Content -->
         <div class="modal__body">
           <slot></slot>
         </div>
@@ -30,21 +43,6 @@
     </div>
   </Transition>
 </template>
-
-<script>
-export default {
-  name: "BaseModal",
-
-  props: {
-    value: {
-      type: [Boolean, Number],
-      default: 0
-    }
-  },
-
-  emits: ['input']
-}
-</script>
 
 <style lang="scss" scoped>
 @import './assets/scss/BaseModal';

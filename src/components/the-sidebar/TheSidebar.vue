@@ -1,3 +1,40 @@
+
+<script setup>
+import { reactive } from 'vue'
+
+const tabs = reactive([
+  {
+    text: 'Hero',
+    to: { name: 'hero-mgmt' }
+  },
+  {
+    text: 'Flow',
+    to: { name: 'flow-mgmt' }
+  },
+  {
+    text: 'About Me',
+    to: { name: 'about-mgmt' }
+  },
+  {
+    text: 'Services',
+    to: { name: 'services-mgmt' }
+  },
+  {
+    text: 'Testimonials',
+    to: { name: 'testimonials-mgmt' }
+  },
+  {
+    text: 'Gallery',
+    to: { name: 'gallery-mgmt' }
+  },
+  {
+    text: 'Socials',
+    to: { name: 'socials-mgmt' }
+  }
+])
+
+</script>
+
 <template>
   <div class="sidebar">
     <ul class="tab">
@@ -10,84 +47,27 @@
 
         <span>Ernie Jeash</span>
       </li>
-      <li
+
+      <router-link
         v-for="(tab, tabKey) in tabs"
         :key="tabKey"
-        class="tab__item tab__item--link"
+        v-slot="{ navigate, isActive, }"
+        custom
+        :to="tab.to"
       >
-        {{ tab.text }}
-      </li>
+        <li
+          class="tab__item tab-link"
+          :class="{
+            'tab-link--active': isActive
+          }"
+          @click="navigate"
+        >
+          {{ tab.text }}
+        </li>
+      </router-link>
     </ul>
   </div>
 </template>
-
-<script>
-import { reactive, ref, inject } from 'vue'
-import { useRoute } from 'vue-router'
-import { useEventListener } from '@vueuse/core'
-
-import _throttle from 'lodash/throttle'
-
-export default {
-  setup () {
-    const tabs = reactive([
-      {
-        text: 'Hero',
-        to: '/#about'
-      },
-      {
-        text: 'Flow',
-        to: '/#services'
-      },
-      {
-        text: 'About Me',
-        to: '/#testimonials'
-      },
-      {
-        text: 'Services',
-        to: '/#gallery'
-      },
-      {
-        text: 'Testimonias',
-        to: '/#contact',
-        type: 'button'
-      },
-      {
-        text: 'Gallery',
-        to: { name: 'login' },
-        type: 'button'
-      },
-      {
-        text: 'Socials',
-        to: { name: 'login' },
-        type: 'button'
-      }
-    ])
-
-    const windowScrollY = ref(0)
-    useEventListener(window, 'scroll', _throttle(() => {
-      windowScrollY.value = window.scrollY
-    }, 100))
-
-    const isHamburgerActive = ref(false)
-    function toggleHamburger () {
-      isHamburgerActive.value = !isHamburgerActive.value
-    }
-
-    return {
-      breakpoint: inject('breakpoint'),
-
-      route: useRoute(),
-
-      tabs,
-      windowScrollY,
-
-      isHamburgerActive,
-      toggleHamburger
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 @import './assets/scss/TheSidebar';

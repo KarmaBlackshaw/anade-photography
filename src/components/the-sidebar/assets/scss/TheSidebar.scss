@@ -15,21 +15,26 @@
           border-radius: 50%;
         }
       }
+    }
 
-      &.tab__item--link {
-        padding: 10px;
-        border-radius: 5px;
-        transition: 100ms ease;
-        transition-property: background-color;
-        text-transform: capitalize;
+    .tab-link {
+      padding: 10px;
+      border-radius: 5px;
+      transition: 100ms ease;
+      transition-property: background-color;
+      text-transform: capitalize;
+      border: 1px solid transparent;
 
-        &:not(:last-child) {
-          margin-bottom: 5px;
-        }
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
 
-        &:hover {
-          background-color: theme("colors.neutral.800");
-        }
+      &:hover {
+        background-color: theme("colors.neutral.800");
+      }
+
+      &.tab-link--active {
+        background-color: theme("colors.zinc.700");
       }
     }
   }
