@@ -33,11 +33,11 @@
 </template>
 
 <script>
-import { ref, provide, onMounted, computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 // composables
-import useBreakpoint from '@/composables/useBreakpoint'
+import useSetupGlobalProvide from '@/composables/useSetupGlobalProvide'
 
 import TheNavigation from './components/the-navigation/TheNavigation'
 import TheFooter from './components/the-footer/TheFooter'
@@ -53,13 +53,9 @@ export default {
   },
 
   setup () {
-    const {
-      breakpoint
-    } = useBreakpoint()
+    useSetupGlobalProvide()
 
     const route = useRoute()
-
-    provide('breakpoint', breakpoint)
 
     const navigationPosition = computed(() => {
       return route.meta.auth ? 'relative' : 'fixed'
