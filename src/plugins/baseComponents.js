@@ -1,18 +1,3 @@
-/**
-
-Usage:
-
-import baseComponents from '@/plugins/baseComponents'
-
-app.use(baseComponents, options)
-
-Options:
-- path     {String}      // The relative path of the components folder
-- deep     {Boolean}     // Whether or not to look in subfolders
-- regex    {Regex}       // The regular expression used to match base component filenames
-
- */
-
 // libs
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
