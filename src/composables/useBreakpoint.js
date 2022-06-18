@@ -1,4 +1,3 @@
-import { reactive } from 'vue'
 import { useEventListener } from '@vueuse/core'
 
 // libs
@@ -41,7 +40,5 @@ export default () => {
   resizeCallback()
   useEventListener(window, 'resize', resizeCallback)
 
-  return {
-    breakpoint
-  }
+  return breakpoint
 }
