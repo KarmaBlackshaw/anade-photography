@@ -1,20 +1,12 @@
 
 <script setup>
-import { ref, onMounted } from 'vue'
-
-import useTestimonials from '@/composables/useTestimonials'
+import Joi from 'joi'
 
 const {
   store: storeTestimonial
 } = useTestimonials()
 
-onMounted(async () => {
-  await storeTestimonial({
-    content: 'test',
-    name: 'test',
-    position: 'test'
-  })
-})
+const swal = useSwal()
 
 const truncateString = (string, maxLength) => {
   return string.length > maxLength
@@ -23,6 +15,56 @@ const truncateString = (string, maxLength) => {
 }
 
 const createModal = ref(true)
+
+const testimonialData = reactive({
+  name: null,
+  position: null,
+  content: null
+})
+
+async function handleClickSaveTestimonial () {
+  const schema = Joi.object({
+    name: Joi.string()
+      .required(),
+    position: Joi.string()
+      .optional(),
+    content: Joi.string()
+      .required()
+  })
+
+  try {
+    const {
+      value,
+      error: validationError
+    } = await schema.validate(testimonialData)
+
+    if (validationError) {
+      return swal.fire({
+        icon: 'error',
+        title: 'Validation Error',
+        text: validationError.message
+      })
+    }
+
+    await storeTestimonial({
+      name: value.name,
+      position: value.position,
+      content: value.content
+    })
+
+    swal.fire({
+      icon: 'success',
+      title: 'Success',
+      text: 'Testimonial has been saved!'
+    })
+
+    createModal.value = false
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+
 </script>
 
 <template>
@@ -95,22 +137,27 @@ const createModal = ref(true)
       </template>
 
       <base-input
+        v-model="testimonialData.name"
         label="Name"
         placeholder="Name"
       />
 
       <base-input
+        v-model="testimonialData.position"
         label="Position"
         placeholder="Position"
       />
 
       <base-textarea
+        v-model="testimonialData.content"
         label="Content"
         placeholder="Content"
       />
 
       <template #footer>
-        footer
+        <base-button @click="handleClickSaveTestimonial">
+          Save
+        </base-button>
       </template>
     </base-modal>
   </section>
