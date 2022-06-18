@@ -10,6 +10,7 @@ module.exports = {
   },
   "extends":
   [
+    './.eslintrc-auto-import.json',
     'plugin:vue/base',
     'plugin:vue/vue3-recommended',
     'plugin:vue/vue3-strongly-recommended',
