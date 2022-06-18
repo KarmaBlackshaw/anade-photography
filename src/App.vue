@@ -36,9 +36,6 @@
 import { ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
-// composables
-import useSetupGlobalProvide from '@/composables/useSetupGlobalProvide'
-
 import TheNavigation from './components/the-navigation/TheNavigation'
 import TheFooter from './components/the-footer/TheFooter'
 import TheSidebar from './components/the-sidebar/TheSidebar'
@@ -53,8 +50,6 @@ export default {
   },
 
   setup () {
-    useSetupGlobalProvide()
-
     const route = useRoute()
 
     const navigationPosition = computed(() => {
