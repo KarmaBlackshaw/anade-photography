@@ -1,17 +1,18 @@
 
 <script setup>
-
-const props = defineProps({
+defineProps({
   label: {
     type: String,
     default: ''
   },
 
   modelValue: {
-    type: [Number, Boolean],
-    default: false
+    type: [String, Number],
+    default: ''
   }
 })
+
+const emit = defineEmits(['update:modelValue'])
 
 </script>
 
@@ -21,13 +22,15 @@ const props = defineProps({
       v-if="label"
       class="base-input__label"
     >
-      {{ props.label }}
+      {{ label }}
     </label>
 
     <input
       v-bind="$attrs"
       type="text"
       class="base-input"
+      :value="modelValue"
+      @input="emit('update:modelValue', $event.target.value)"
     >
   </div>
 </template>
