@@ -90,11 +90,8 @@
 </template>
 
 <script>
-import { reactive, ref, inject } from 'vue'
-import { useRoute } from 'vue-router'
-import { useEventListener } from '@vueuse/core'
-
 import TheNavigationHamburger from './components/TheNavigationHamburger'
+
 import _throttle from 'lodash/throttle'
 
 export default {
@@ -138,7 +135,7 @@ export default {
     }
 
     return {
-      breakpoint: inject('breakpoint'),
+      breakpoint: useBreakpoint(),
 
       route: useRoute(),
 
