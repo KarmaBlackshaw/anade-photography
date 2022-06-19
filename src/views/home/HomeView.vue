@@ -1,3 +1,8 @@
+
+<script setup>
+const breakpoint = useBreakpoint()
+</script>
+
 <template>
   <section class="home">
     <div class="home__background"></div>
@@ -86,19 +91,5 @@
     </div>
   </section>
 </template>
-
-<script>
-import { inject } from 'vue'
-
-export default {
-  setup () {
-    const breakpoint = inject('breakpoint')
-
-    return {
-      breakpoint
-    }
-  }
-}
-</script>
 
 <style src="./assets/scss/HomeView.scss" lang="scss" scoped></style>
