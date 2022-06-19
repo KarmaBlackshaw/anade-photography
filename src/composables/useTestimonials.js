@@ -1,4 +1,7 @@
+// config
 import { db } from '@/config/firebase'
+
+// libs
 import {
   collection,
   addDoc,
@@ -10,8 +13,6 @@ import {
 } from "firebase/firestore"
 
 export default () => {
-  const ref = collection(db, "testimonials")
-
   return {
     async store ({
       content,
@@ -19,7 +20,9 @@ export default () => {
       position
     }) {
       try {
-        await addDoc(ref, {
+        const dbRef = collection(db, "testimonials")
+
+        await addDoc(dbRef, {
           content,
           name,
           position,
@@ -32,21 +35,15 @@ export default () => {
     },
 
     get () {
-      const q = query(ref)
+      return statusWrapper(async () => {
+        const dbRef = collection(db, "testimonials")
+        const snapshot = await getDocs(query(dbRef))
 
-      const results = ref([])
-
-      getDocs(q)
-        .then(snapshot => {
-          snapshot.forEach(result => {
-            results.value.push({
-              id: result.id,
-              ...result.data()
-            })
-          })
-        })
-
-      return results
+        return snapshot.docs.map(reslt => ({
+          id: reslt.id,
+          ...reslt.data()
+        }))
+      })
     },
 
     async delete (id) {

@@ -3,18 +3,6 @@
 // libs
 import Joi from 'joi'
 
-// composables
-const {
-  store: storeTestimonial,
-  get: getTestimonials
-} = useTestimonials()
-
-const swal = useSwal()
-const testimonials = ref([])
-onMounted(async () => {
-  testimonials.value = await getTestimonials()
-})
-
 // helpers
 const truncateString = (string, maxLength) => {
   return string.length > maxLength
@@ -22,12 +10,42 @@ const truncateString = (string, maxLength) => {
     : string
 }
 
+// composables
+const {
+  store: storeTestimonial,
+  get: getTestimonials
+} = useTestimonials()
+
+const swal = useSwal()
+
+const testimonials = reactive({
+  isLoading: true,
+  data: []
+})
+
+function refetchTestimonials () {
+  const {
+    isLoading: testimonialsIsLoading,
+    data: testimonialsData
+  } = getTestimonials()
+
+  testimonials.isLoading = testimonialsIsLoading
+  testimonials.data = testimonialsData
+}
+
+refetchTestimonials()
+
 const createModal = ref(false)
 
-const testimonialData = reactive({
+const testimonialForm = reactive({
   name: null,
   position: null,
-  content: null
+  content: null,
+  clear () {
+    this.name = null
+    this.position = null
+    this.content = null
+  }
 })
 
 async function handleClickSaveTestimonial () {
@@ -44,7 +62,11 @@ async function handleClickSaveTestimonial () {
     const {
       value,
       error: validationError
-    } = await schema.validate(testimonialData)
+    } = await schema.validate({
+      name: testimonialForm.name,
+      position: testimonialForm.position,
+      content: testimonialForm.content
+    })
 
     if (validationError) {
       return swal.fire({
@@ -60,6 +82,8 @@ async function handleClickSaveTestimonial () {
       content: value.content
     })
 
+    refetchTestimonials()
+
     swal.fire({
       icon: 'success',
       title: 'Success',
@@ -67,11 +91,31 @@ async function handleClickSaveTestimonial () {
     })
 
     createModal.value = false
+    testimonialForm.clear()
   } catch (error) {
     console.log(error)
     throw error
   }
 }
+
+const testimonialHeaders = [
+  {
+    title: 'Name',
+    key: 'name'
+  },
+  {
+    title: 'Position',
+    key: 'position'
+  },
+  {
+    title: 'Content',
+    key: 'content'
+  },
+  {
+    title: '',
+    key: 'action'
+  }
+]
 
 </script>
 
@@ -93,7 +137,14 @@ async function handleClickSaveTestimonial () {
       </base-card-title>
 
       <base-card-body>
-        <base-table class="about-td">
+        <base-table-data
+          :headers="testimonialHeaders"
+          :is-loading="testimonials.isLoading"
+          :items="testimonials.data"
+        >
+          asd
+        </base-table-data>
+        <!-- <base-table class="about-td">
           <base-thead>
             <base-th>Name</base-th>
 
@@ -105,9 +156,10 @@ async function handleClickSaveTestimonial () {
 
             <base-th class="td__actions" />
           </base-thead>
+
           <base-tbody>
             <base-tr
-              v-for="(testimonial, testimonialKey) in testimonials"
+              v-for="(testimonial, testimonialKey) in testimonials.data"
               :key="testimonialKey"
             >
               <base-td>
@@ -135,7 +187,7 @@ async function handleClickSaveTestimonial () {
               </base-td>
             </base-tr>
           </base-tbody>
-        </base-table>
+        </base-table> -->
       </base-card-body>
     </base-card>
 
@@ -145,19 +197,19 @@ async function handleClickSaveTestimonial () {
       </template>
 
       <base-input
-        v-model="testimonialData.name"
+        v-model="testimonialForm.name"
         label="Name"
         placeholder="Name"
       />
 
       <base-input
-        v-model="testimonialData.position"
+        v-model="testimonialForm.position"
         label="Position"
         placeholder="Position"
       />
 
       <base-textarea
-        v-model="testimonialData.content"
+        v-model="testimonialForm.content"
         label="Content"
         placeholder="Content"
       />
