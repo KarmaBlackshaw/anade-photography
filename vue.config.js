@@ -21,7 +21,8 @@ module.exports = defineConfig({
           'vue-router'
         ],
         dirs: [
-          './src/composables'
+          './src/composables',
+          './src/utilities'
         ]
       }),
       require('unplugin-vue-components/webpack')({
