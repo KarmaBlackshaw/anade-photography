@@ -6,6 +6,11 @@ module.exports = defineConfig({
   configureWebpack: {
     plugins: [
       require('unplugin-auto-import/webpack')({
+        include: [
+          /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+          /\.vue$/, /\.vue\?vue/, // .vue
+          /\.md$/ // .md
+        ],
         dts: false,
         eslintrc: {
           enabled: true
@@ -16,11 +21,15 @@ module.exports = defineConfig({
           'vue-router'
         ],
         dirs: [
-          './provide',
-          './provide',
-          './src/composables',
-          './src/components'
+          './src/composables'
         ]
+      }),
+      require('unplugin-vue-components/webpack')({
+        dirs: [
+          './src/components'
+        ],
+        dts: false,
+        directives: false
       })
     ]
   },
