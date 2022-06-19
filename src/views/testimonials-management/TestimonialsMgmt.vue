@@ -1,20 +1,28 @@
 
 <script setup>
+// libs
 import Joi from 'joi'
 
+// composables
 const {
-  store: storeTestimonial
+  store: storeTestimonial,
+  get: getTestimonials
 } = useTestimonials()
 
 const swal = useSwal()
+const testimonials = ref([])
+onMounted(async () => {
+  testimonials.value = await getTestimonials()
+})
 
+// helpers
 const truncateString = (string, maxLength) => {
   return string.length > maxLength
     ? `${string.substring(0, maxLength)}…`
     : string
 }
 
-const createModal = ref(true)
+const createModal = ref(false)
 
 const testimonialData = reactive({
   name: null,
@@ -87,31 +95,31 @@ async function handleClickSaveTestimonial () {
       <base-card-body>
         <base-table class="about-td">
           <base-thead>
-            <base-th>Title</base-th>
+            <base-th>Name</base-th>
 
-            <base-th>Content</base-th>
+            <base-th>Position</base-th>
 
             <base-th class="td__thumbnail">
-              Thumbnail
+              Content
             </base-th>
 
             <base-th class="td__actions" />
           </base-thead>
           <base-tbody>
-            <base-tr>
+            <base-tr
+              v-for="(testimonial, testimonialKey) in testimonials"
+              :key="testimonialKey"
+            >
               <base-td>
-                Lorem ipsum dolor sit
+                {{ testimonial.name }}
               </base-td>
 
-              <base-td class="truncate">
-                {{ truncateString('amet consectetur adipisicing elit. Aspernatur exercitationem officia, aut soluta expedita ipsam delectus nostrum sit porro excepturi esse ipsum dolorum sequi perspiciatis, explicabo id officiis. Voluptate, mollitia.', 30) }}
+              <base-td>
+                {{ testimonial.position }}
               </base-td>
 
-              <base-td class="td__thumbnail">
-                <img
-                  src="https://images.pexels.com/photos/10334838/pexels-photo-10334838.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                  alt=""
-                >
+              <base-td>
+                {{ testimonial.content }}
               </base-td>
 
               <base-td
