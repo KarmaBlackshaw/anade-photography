@@ -1,52 +1,76 @@
 .base-button {
-  @apply rounded tracking-wider;
+  border-radius: 5px;
+  letter-spacing: 0.025em;
   text-transform: uppercase;
-  transition: 100ms ease;
-  transition-property: border-color, color;
   font-weight: 600;
-  transition: 100ms ease;
-  transition-property: border-color, color;
+  transition-property: border-color, background-color, color;
+  transition: 200ms ease;
   border: 1px solid theme("colors.gray.300");
   color: theme("colors.gray.300");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
 
-  &.base-button--size-sm {
-    @apply px-3 py-2 text-sm;
+  &.base-button__size-sm {
+    height: 25px;
+    font-size: 9px;
+    padding: 0 10px;
   }
 
-  &.base-button--size-md {
-    @apply px-5 py-3;
+  &.base-button__size-md {
+    height: 35px;
+    font-size: 12px;
+    padding: 0 15px;
+  }
+
+  &.base-button__size-lg {
+    height: 45px;
     font-size: 13px;
+    padding: 0 20px;
   }
 
-  &.base-button--size-lg {
-    @apply px-6 py-4 text-lg;
-  }
+  @mixin btnColor($bgColor, $bgColorHovered, $txtColor) {
+    border: 1px solid $bgColor;
+    background-color: $bgColor;
+    color: $txtColor;
 
-  &.base-button--color-white {
-    border: 1px solid theme("colors.gray.300");
-    background-color: theme("colors.gray.300");
-    color: theme("colors.gray.900");
-
-    &.base-button--outlined {
-      color: theme("colors.gray.200");
+    &.base-button__outlined {
+      color: $bgColor;
+      background-color: transparent;
     }
 
     &:hover {
-      border: 1px solid theme("colors.gray.200");
-      background-color: theme("colors.gray.200");
-      color: theme("colors.gray.800");
+      border: 1px solid $bgColorHovered;
+      background-color: $bgColorHovered;
 
-      &.base-button--outlined {
-        color: theme("colors.gray.100");
+      &.base-button__outlined {
+        color: $txtColor;
       }
     }
   }
 
-  &.base-button--outlined {
-    background-color: transparent;
+  &.base-button__color-white {
+    @include btnColor(
+      $bgColor: theme("colors.gray.200"),
+      $bgColorHovered: theme("colors.gray.300"),
+      $txtColor: theme("colors.gray.900")
+    );
+  }
 
-    &:hover {
-      background-color: transparent;
-    }
+  &.base-button__color-blue {
+    @include btnColor(
+      $bgColor: theme("colors.blue.500"),
+      $bgColorHovered: theme("colors.blue.600"),
+      $txtColor: theme("colors.blue.50")
+    );
+  }
+
+  &.base-button__color-green {
+    @include btnColor(
+      $bgColor: theme("colors.green.500"),
+      $bgColorHovered: theme("colors.green.600"),
+      $txtColor: theme("colors.green.50")
+    );
   }
 }

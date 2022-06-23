@@ -81,7 +81,8 @@ const breakpoint = useBreakpoint()
 
         <div class="introduction__actions">
           <base-button
-            class="bg-sky-500 text-sky-50 border-none"
+            color="blue"
+            size="lg"
             @click="$router.push({hash: '#contact'})"
           >
             Book Now

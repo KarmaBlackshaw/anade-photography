@@ -77,6 +77,7 @@
     "shallowReactive": true,
     "shallowReadonly": true,
     "shallowRef": true,
+    "statusWrapper": true,
     "syncRef": true,
     "syncRefs": true,
     "templateRef": true,
