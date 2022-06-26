@@ -18,10 +18,12 @@ module.exports = defineConfig({
         imports: [
           '@vueuse/core',
           'vue',
+          'pinia',
           'vue-router'
         ],
         dirs: [
           './src/composables',
+          './src/store',
           './src/utilities'
         ]
       }),

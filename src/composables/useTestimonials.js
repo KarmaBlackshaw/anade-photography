@@ -1,58 +1,103 @@
-// config
-import { db } from '@/config/firebase'
-
 // libs
-import {
-  collection,
-  addDoc,
-  query,
-  getDocs,
-  deleteDoc,
-  doc,
-  serverTimestamp
-} from "firebase/firestore"
+import Joi from 'joi'
+import { readonly } from 'vue'
+
+// composables
+const swal = useSwal()
+
+// store
+const testimonialStore = useTestimonialsStore()
 
 export default () => {
-  return {
-    async store ({
-      content,
-      name,
-      position
-    }) {
-      try {
-        const dbRef = collection(db, "testimonials")
+  /**
+   * store
+   */
+  const {
+    form: storeForm,
+    reset: storeFormReset
+  } = useForm({
+    name: null,
+    position: null,
+    content: null
+  })
 
-        await addDoc(dbRef, {
-          content,
-          name,
-          position,
-          created_at: serverTimestamp()
-        })
-      } catch (error) {
-        console.log(error)
-        throw error
-      }
-    },
+  const storeModal = ref(false)
 
-    get () {
-      return statusWrapper(async () => {
-        const dbRef = collection(db, "testimonials")
-        const snapshot = await getDocs(query(dbRef))
+  async function store () {
+    const schema = Joi.object({
+      name: Joi.string()
+        .required(),
+      position: Joi.string()
+        .optional(),
+      content: Joi.string()
+        .required()
+    })
 
-        return snapshot.docs.map(reslt => ({
-          id: reslt.id,
-          ...reslt.data()
-        }))
+    try {
+      const data = await schema.validateAsync(storeForm)
+
+      await testimonialStore.store(data)
+
+      fetch()
+
+      storeModal.value = false
+
+      storeFormReset()
+
+      return swal.success({
+        text: 'Testimonial successfully saved!'
       })
-    },
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  }
 
-    async delete (id) {
+  /**
+   * Fetch
+   */
+  const isFetching = ref(false)
+  function fetch () {
+    const { isLoading } = statusWrapper(() => {
+      return testimonialStore.fetch()
+    })
+
+    isFetching.value = isLoading
+  }
+
+  /**
+   * Delete
+   */
+  function del (id) {
+    const onConfirm = async () => {
       try {
-        await deleteDoc(doc(db, "testimonials", id))
+        await testimonialStore.delete(id)
+
+        fetch()
       } catch (error) {
         console.log(error)
         throw error
       }
     }
+
+    return swal.prompt({
+      onConfirm
+    })
+  }
+
+  onMounted(async () => {
+    await fetch()
+  })
+
+  return {
+    isFetching: readonly(isFetching),
+    list: readonly(computed(() => testimonialStore.list)),
+
+    store,
+    storeForm,
+    storeFormReset,
+    storeModal,
+
+    del
   }
 }

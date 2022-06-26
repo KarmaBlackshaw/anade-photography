@@ -1,102 +1,88 @@
 
 <script setup>
 // libs
-import Joi from 'joi'
 
 // helpers
-const truncateString = (string, maxLength) => {
-  return string.length > maxLength
-    ? `${string.substring(0, maxLength)}…`
-    : string
-}
+// const truncateString = (string, maxLength) => {
+//   return string.length > maxLength
+//     ? `${string.substring(0, maxLength)}…`
+//     : string
+// }
 
 // composables
 const {
-  store: storeTestimonial,
-  get: getTestimonials
+  isFetching: testimonialsIsFetching,
+  list: testimonialsList,
+  del: testimonialsDelete,
+  storeForm: testimonialsStoreForm,
+  store: testimonialsStore,
+  storeModal: testimonialStoreModal
 } = useTestimonials()
+// const swal = useSwal()
 
-const swal = useSwal()
+// const testimonials = reactive({
+//   isLoading: true,
+//   data: []
+// })
 
-const testimonials = reactive({
-  isLoading: true,
-  data: []
-})
+// function refetchTestimonials () {
+//   const {
+//     isLoading: testimonialsIsLoading,
+//     data: testimonialsData
+//   } = getTestimonials()
 
-function refetchTestimonials () {
-  const {
-    isLoading: testimonialsIsLoading,
-    data: testimonialsData
-  } = getTestimonials()
+//   testimonials.isLoading = testimonialsIsLoading
+//   testimonials.data = testimonialsData
+// }
 
-  testimonials.isLoading = testimonialsIsLoading
-  testimonials.data = testimonialsData
-}
+// onMounted(() => {
+//   refetchTestimonials()
+// })
 
-refetchTestimonials()
+// const createModal = ref(false)
 
-const createModal = ref(false)
+// const testimonialForm = reactive({
+//   name: null,
+//   position: null,
+//   content: null,
+//   clear () {
+//     this.name = null
+//     this.position = null
+//     this.content = null
+//   }
+// })
 
-const testimonialForm = reactive({
-  name: null,
-  position: null,
-  content: null,
-  clear () {
-    this.name = null
-    this.position = null
-    this.content = null
-  }
-})
+// async function handleClickSaveTestimonial () {
+//   try {
+//     await storeTestimonial({
+//       name: testimonialForm.name,
+//       position: testimonialForm.position,
+//       content: testimonialForm.content
+//     })
 
-async function handleClickSaveTestimonial () {
-  const schema = Joi.object({
-    name: Joi.string()
-      .required(),
-    position: Joi.string()
-      .optional(),
-    content: Joi.string()
-      .required()
-  })
+//     refetchTestimonials()
 
-  try {
-    const {
-      value,
-      error: validationError
-    } = await schema.validate({
-      name: testimonialForm.name,
-      position: testimonialForm.position,
-      content: testimonialForm.content
-    })
+//     swal.fire({
+//       icon: 'success',
+//       title: 'Success',
+//       text: 'Testimonial has been saved!'
+//     })
 
-    if (validationError) {
-      return swal.fire({
-        icon: 'error',
-        title: 'Validation Error',
-        text: validationError.message
-      })
-    }
+//     createModal.value = false
 
-    await storeTestimonial({
-      name: value.name,
-      position: value.position,
-      content: value.content
-    })
+//     testimonialForm.clear()
+//   } catch (error) {
+//     if (error.name === "ValidationError") {
+//       return swal.fire({
+//         icon: 'error',
+//         title: 'Validation Error',
+//         text: error.message
+//       })
+//     }
 
-    refetchTestimonials()
-
-    swal.fire({
-      icon: 'success',
-      title: 'Success',
-      text: 'Testimonial has been saved!'
-    })
-
-    createModal.value = false
-    testimonialForm.clear()
-  } catch (error) {
-    console.log(error)
-    throw error
-  }
-}
+//     throw error
+//   }
+// }
 
 const testimonialHeaders = [
   {
@@ -130,7 +116,7 @@ const testimonialHeaders = [
 
         <base-button
           size="sm"
-          @click="createModal = true"
+          @click="testimonialStoreModal = true"
         >
           Add
         </base-button>
@@ -139,83 +125,62 @@ const testimonialHeaders = [
       <base-card-body>
         <base-table-data
           :headers="testimonialHeaders"
-          :is-loading="testimonials.isLoading"
-          :items="testimonials.data"
+          :is-loading="testimonialsIsFetching"
+          :items="testimonialsList"
         >
-          asd
-        </base-table-data>
-        <!-- <base-table class="about-td">
-          <base-thead>
-            <base-th>Name</base-th>
-
-            <base-th>Position</base-th>
-
-            <base-th class="td__thumbnail">
-              Content
-            </base-th>
-
-            <base-th class="td__actions" />
-          </base-thead>
-
-          <base-tbody>
-            <base-tr
-              v-for="(testimonial, testimonialKey) in testimonials.data"
-              :key="testimonialKey"
-            >
-              <base-td>
-                {{ testimonial.name }}
-              </base-td>
-
-              <base-td>
-                {{ testimonial.position }}
-              </base-td>
-
-              <base-td>
-                {{ testimonial.content }}
-              </base-td>
-
-              <base-td
-                class="td__actions"
-                width="20px"
+          <template #action="{item}">
+            <div class="flex justify-end">
+              <base-button
+                circle
+                size="sm"
+                color="transparent"
+                outlined
               >
-                <base-icon-edit
-                  class="actions__icon"
-                  @click="modal = !modal"
-                />
+                <base-icon-edit color="#22c55e" />
+              </base-button>
 
-                <base-icon-trash class="actions__icon" />
-              </base-td>
-            </base-tr>
-          </base-tbody>
-        </base-table> -->
+              <base-button
+                circle
+                size="sm"
+                color="transparent"
+                outlined
+              >
+                <base-icon-trash
+                  color="#f87171"
+                  @click="testimonialsDelete(item.id)"
+                />
+              </base-button>
+            </div>
+          </template>
+        </base-table-data>
       </base-card-body>
     </base-card>
 
-    <base-modal v-model="createModal">
+    <base-modal v-model="testimonialStoreModal">
       <template #header>
         Create Testimonial
       </template>
 
       <base-input
-        v-model="testimonialForm.name"
+        v-model="testimonialsStoreForm.name"
         label="Name"
         placeholder="Name"
       />
 
       <base-input
-        v-model="testimonialForm.position"
+        v-model="testimonialsStoreForm.position"
         label="Position"
         placeholder="Position"
       />
 
       <base-textarea
-        v-model="testimonialForm.content"
+        v-model="testimonialsStoreForm.content"
         label="Content"
         placeholder="Content"
       />
 
       <template #footer>
-        <base-button @click="handleClickSaveTestimonial">
+        <base-button @click="testimonialsStore">
           Save
         </base-button>
       </template>
