@@ -1,3 +1,30 @@
+@mixin btnColor($bgColor, $bgColorHovered, $txtColor) {
+  border: 1px solid $bgColor;
+  background-color: $bgColor;
+  color: $txtColor;
+
+  &.base-button__outlined {
+    color: $bgColor;
+    background-color: transparent;
+  }
+
+  &:hover {
+    border: 1px solid $bgColorHovered;
+    background-color: $bgColorHovered;
+
+    &.base-button__outlined {
+      color: $txtColor;
+    }
+  }
+}
+
+@mixin btnCircle($dimension) {
+  border-radius: 50%;
+  width: $dimension;
+  height: $dimension;
+  padding: 5px;
+}
+
 .base-button {
   border-radius: 5px;
   letter-spacing: 0.025em;
@@ -16,37 +43,29 @@
     height: 25px;
     font-size: 9px;
     padding: 0 10px;
+
+    &.base-button__circle {
+      @include btnCircle($dimension: 25px);
+    }
   }
 
   &.base-button__size-md {
     height: 35px;
     font-size: 12px;
     padding: 0 15px;
+
+    &.base-button__circle {
+      @include btnCircle($dimension: 35px);
+    }
   }
 
   &.base-button__size-lg {
     height: 45px;
     font-size: 13px;
     padding: 0 20px;
-  }
 
-  @mixin btnColor($bgColor, $bgColorHovered, $txtColor) {
-    border: 1px solid $bgColor;
-    background-color: $bgColor;
-    color: $txtColor;
-
-    &.base-button__outlined {
-      color: $bgColor;
-      background-color: transparent;
-    }
-
-    &:hover {
-      border: 1px solid $bgColorHovered;
-      background-color: $bgColorHovered;
-
-      &.base-button__outlined {
-        color: $txtColor;
-      }
+    &.base-button__circle {
+      @include btnCircle($dimension: 45px);
     }
   }
 
@@ -71,6 +90,14 @@
       $bgColor: theme("colors.green.500"),
       $bgColorHovered: theme("colors.green.600"),
       $txtColor: theme("colors.green.50")
+    );
+  }
+
+  &.base-button__color-transparent {
+    @include btnColor(
+      $bgColor: transparent,
+      $bgColorHovered: transparent,
+      $txtColor: theme("colors.gray.900")
     );
   }
 }

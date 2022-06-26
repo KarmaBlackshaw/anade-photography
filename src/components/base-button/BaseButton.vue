@@ -17,6 +17,10 @@ const props = defineProps({
   outlined: {
     type: Boolean,
     default: false
+  },
+  circle: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -31,6 +35,10 @@ const classes = computed(() => {
 
   if (props.outlined) {
     classList.push(`base-button__outlined`)
+  }
+
+  if (props.circle) {
+    classList.push(`base-button__circle`)
   }
 
   return classList

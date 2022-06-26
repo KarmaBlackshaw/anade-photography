@@ -17,7 +17,7 @@ export default {
       control: {
         type: 'select'
       },
-      options: ['white', 'blue', 'green'],
+      options: ['transparent', 'white', 'blue', 'green'],
       defaultValue: 'white'
     }
   }
