@@ -62,23 +62,25 @@ defineProps({
         </base-td>
       </base-tr>
 
-      <base-tr
-        v-for="(item, itemKey) in items"
-        :key="itemKey"
-      >
-        <base-td
-          v-for="(header, headerKey) in headers"
-          :key="headerKey"
+      <template v-else>
+        <base-tr
+          v-for="(item, itemKey) in items"
+          :key="itemKey"
         >
-          <slot
-            :name="header.key"
-            :item="item"
-            :index="itemKey"
+          <base-td
+            v-for="(header, headerKey) in headers"
+            :key="headerKey"
           >
-            {{ item[header.key] }}
-          </slot>
-        </base-td>
-      </base-tr>
+            <slot
+              :name="header.key"
+              :item="item"
+              :index="itemKey"
+            >
+              {{ item[header.key] }}
+            </slot>
+          </base-td>
+        </base-tr>
+      </template>
     </base-tbody>
   </base-table>
 </template>
