@@ -85,6 +85,60 @@ export default () => {
     })
   }
 
+  /**
+   * edit
+   */
+  const {
+    form: editForm,
+    reset: editFormReset
+  } = useForm({
+    id: null,
+    name: null,
+    position: null,
+    content: null
+  })
+
+  const editModal = ref(false)
+
+  function showEditModal (item) {
+    editForm.id = item.id
+    editForm.name = item.name
+    editForm.position = item.position
+    editForm.content = item.content
+
+    editModal.value = true
+  }
+
+  function editSave () {
+    const onConfirm = async () => {
+      try {
+        await testimonialStore.update({
+          id: editForm.id,
+          content: editForm.content,
+          name: editForm.name,
+          position: editForm.position
+        })
+
+        fetch()
+
+        editFormReset()
+
+        editModal.value = false
+
+        return swal.success({
+          text: 'Testimonial successfully saved!'
+        })
+      } catch (error) {
+        console.log(error)
+        throw error
+      }
+    }
+
+    return swal.prompt({
+      onConfirm
+    })
+  }
+
   onMounted(async () => {
     await fetch()
   })
@@ -97,6 +151,11 @@ export default () => {
     storeForm,
     storeFormReset,
     storeModal,
+
+    showEditModal,
+    editModal,
+    editForm,
+    editSave,
 
     del
   }

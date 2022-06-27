@@ -16,7 +16,11 @@ const {
   del: testimonialsDelete,
   storeForm: testimonialsStoreForm,
   store: testimonialsStore,
-  storeModal: testimonialStoreModal
+  storeModal: testimonialStoreModal,
+  showEditModal: testimonialShowEditModal,
+  editModal: testimonialEditModal,
+  editForm: testimonialEditForm,
+  editSave: testimonialEditSave
 } = useTestimonials()
 // const swal = useSwal()
 
@@ -136,7 +140,10 @@ const testimonialHeaders = [
                 color="transparent"
                 outlined
               >
-                <base-icon-edit color="#22c55e" />
+                <base-icon-edit
+                  color="#22c55e"
+                  @click="testimonialShowEditModal(item)"
+                />
               </base-button>
 
               <base-button
@@ -181,6 +188,36 @@ const testimonialHeaders = [
 
       <template #footer>
         <base-button @click="testimonialsStore">
+          Save
+        </base-button>
+      </template>
+    </base-modal>
+
+    <base-modal v-model="testimonialEditModal">
+      <template #header>
+        Create Testimonial
+      </template>
+
+      <base-input
+        v-model="testimonialEditForm.name"
+        label="Name"
+        placeholder="Name"
+      />
+
+      <base-input
+        v-model="testimonialEditForm.position"
+        label="Position"
+        placeholder="Position"
+      />
+
+      <base-textarea
+        v-model="testimonialEditForm.content"
+        label="Content"
+        placeholder="Content"
+      />
+
+      <template #footer>
+        <base-button @click="testimonialEditSave">
           Save
         </base-button>
       </template>

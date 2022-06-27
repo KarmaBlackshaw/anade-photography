@@ -4,6 +4,7 @@ import {
   query,
   getDocs,
   deleteDoc,
+  updateDoc,
   doc,
   serverTimestamp
 } from "firebase/firestore"
@@ -18,8 +19,8 @@ export default defineStore('testimonials', {
   actions: {
     async fetch () {
       try {
-        const dbRef = collection(db, "testimonials")
-        const snapshot = await getDocs(query(dbRef))
+        const ref = collection(db, "testimonials")
+        const snapshot = await getDocs(query(ref))
 
         this.$patch(state => {
           state.list = snapshot.docs.map(reslt => ({
@@ -38,9 +39,9 @@ export default defineStore('testimonials', {
     async store (data) {
       try {
 
-        const dbRef = collection(db, "testimonials")
+        const ref = collection(db, "testimonials")
 
-        await addDoc(dbRef, {
+        await addDoc(ref, {
           content: data.content,
           name: data.name,
           position: data.position,
@@ -55,6 +56,21 @@ export default defineStore('testimonials', {
     async delete (id) {
       try {
         await deleteDoc(doc(db, "testimonials", id))
+      } catch (error) {
+        console.log(error)
+        throw error
+      }
+    },
+
+    async update (item) {
+      try {
+        const ref = doc(db, "testimonials", item.id)
+
+        await updateDoc(ref, {
+          content: item.content,
+          name: item.name,
+          position: item.position
+        })
       } catch (error) {
         console.log(error)
         throw error
