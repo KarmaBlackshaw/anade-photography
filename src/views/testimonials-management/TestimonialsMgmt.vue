@@ -3,11 +3,11 @@
 // libs
 
 // helpers
-// const truncateString = (string, maxLength) => {
-//   return string.length > maxLength
-//     ? `${string.substring(0, maxLength)}…`
-//     : string
-// }
+const truncateString = (string, maxLength) => {
+  return string.length > maxLength
+    ? `${string.substring(0, maxLength)}…`
+    : string
+}
 
 // composables
 const {
@@ -22,71 +22,6 @@ const {
   editForm: testimonialEditForm,
   editSave: testimonialEditSave
 } = useTestimonials()
-// const swal = useSwal()
-
-// const testimonials = reactive({
-//   isLoading: true,
-//   data: []
-// })
-
-// function refetchTestimonials () {
-//   const {
-//     isLoading: testimonialsIsLoading,
-//     data: testimonialsData
-//   } = getTestimonials()
-
-//   testimonials.isLoading = testimonialsIsLoading
-//   testimonials.data = testimonialsData
-// }
-
-// onMounted(() => {
-//   refetchTestimonials()
-// })
-
-// const createModal = ref(false)
-
-// const testimonialForm = reactive({
-//   name: null,
-//   position: null,
-//   content: null,
-//   clear () {
-//     this.name = null
-//     this.position = null
-//     this.content = null
-//   }
-// })
-
-// async function handleClickSaveTestimonial () {
-//   try {
-//     await storeTestimonial({
-//       name: testimonialForm.name,
-//       position: testimonialForm.position,
-//       content: testimonialForm.content
-//     })
-
-//     refetchTestimonials()
-
-//     swal.fire({
-//       icon: 'success',
-//       title: 'Success',
-//       text: 'Testimonial has been saved!'
-//     })
-
-//     createModal.value = false
-
-//     testimonialForm.clear()
-//   } catch (error) {
-//     if (error.name === "ValidationError") {
-//       return swal.fire({
-//         icon: 'error',
-//         title: 'Validation Error',
-//         text: error.message
-//       })
-//     }
-
-//     throw error
-//   }
-// }
 
 const testimonialHeaders = [
   {
@@ -158,6 +93,10 @@ const testimonialHeaders = [
                 />
               </base-button>
             </div>
+          </template>
+
+          <template #content="{item}">
+            {{ truncateString(item.content, 80) }}
           </template>
         </base-table-data>
       </base-card-body>
