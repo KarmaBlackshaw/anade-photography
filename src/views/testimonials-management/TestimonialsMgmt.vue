@@ -54,7 +54,9 @@ const testimonialHeaders = [
         Testimonials Management
 
         <base-button
-          size="sm"
+          size="md"
+          color="blue"
+          outlined
           @click="testimonialStoreModal = true"
         >
           Add

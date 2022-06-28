@@ -19,8 +19,8 @@ export default defineStore('testimonials', {
   actions: {
     async fetch () {
       try {
-        const ref = collection(db, "testimonials")
-        const snapshot = await getDocs(query(ref))
+        const dbRef = collection(db, "testimonials")
+        const snapshot = await getDocs(query(dbRef))
 
         this.$patch(state => {
           state.list = snapshot.docs.map(reslt => ({
@@ -39,9 +39,9 @@ export default defineStore('testimonials', {
     async store (data) {
       try {
 
-        const ref = collection(db, "testimonials")
+        const dbRef = collection(db, "testimonials")
 
-        await addDoc(ref, {
+        await addDoc(dbRef, {
           content: data.content,
           name: data.name,
           position: data.position,
@@ -64,9 +64,9 @@ export default defineStore('testimonials', {
 
     async update (item) {
       try {
-        const ref = doc(db, "testimonials", item.id)
+        const dbRef = doc(db, "testimonials", item.id)
 
-        await updateDoc(ref, {
+        await updateDoc(dbRef, {
           content: item.content,
           name: item.name,
           position: item.position
