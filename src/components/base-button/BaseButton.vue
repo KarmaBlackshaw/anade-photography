@@ -56,5 +56,5 @@ const classes = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-@import './assets/scss/BaseButton.scss';
+@import './BaseButton';
 </style>

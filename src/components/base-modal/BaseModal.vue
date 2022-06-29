@@ -45,5 +45,5 @@ function triggerClose () {
 </template>
 
 <style lang="scss" scoped>
-@import './assets/scss/BaseModal';
+@import './BaseModal';
 </style>

@@ -47,5 +47,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './assets/scss/BaseThemeToggle.scss';
+@import './BaseThemeToggle.scss';
 </style>

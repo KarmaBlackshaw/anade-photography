@@ -1,15 +1,15 @@
 <template>
-  <h5 class="card__title">
+  <h5 class="card__body">
     <slot></slot>
   </h5>
 </template>
 
 <script>
 export default {
-  name: "BaseCardTitle"
+  name: "BaseCardBody"
 }
 </script>
 
 <style lang="scss" scoped>
-@import './assets/scss/BaseCardTitle';
+@import './BaseCardBody';
 </style>

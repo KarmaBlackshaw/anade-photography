@@ -20,5 +20,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './assets/scss/TheFooter.scss';
+@import './TheFooter.scss';
 </style>

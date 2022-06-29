@@ -58,9 +58,7 @@ export default () => {
    */
   const isFetching = ref(false)
   function fetch () {
-    const { isLoading } = statusWrapper(() => {
-      return testimonialStore.fetch()
-    })
+    const { isLoading } = useAsyncState(() => testimonialStore.fetch())
 
     isFetching.value = isLoading
   }

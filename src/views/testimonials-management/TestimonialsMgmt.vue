@@ -1,13 +1,8 @@
 
 <script setup>
-// libs
-
-// helpers
-const truncateString = (string, maxLength) => {
-  return string.length > maxLength
-    ? `${string.substring(0, maxLength)}…`
-    : string
-}
+import {
+  truncate as truncateStr
+} from '@/utils/string'
 
 // composables
 const {
@@ -98,7 +93,7 @@ const testimonialHeaders = [
           </template>
 
           <template #content="{item}">
-            {{ truncateString(item.content, 80) }}
+            {{ truncateStr(item.content, 80) }}
           </template>
         </base-table-data>
       </base-card-body>
@@ -112,18 +107,21 @@ const testimonialHeaders = [
       <base-input
         v-model="testimonialsStoreForm.name"
         label="Name"
+        class="mb-1"
         placeholder="Name"
       />
 
       <base-input
         v-model="testimonialsStoreForm.position"
         label="Position"
+        class="mb-1"
         placeholder="Position"
       />
 
       <base-textarea
         v-model="testimonialsStoreForm.content"
         label="Content"
+        class="mb-1"
         placeholder="Content"
       />
 
@@ -142,12 +140,14 @@ const testimonialHeaders = [
       <base-input
         v-model="testimonialEditForm.name"
         label="Name"
+        class="mb-1"
         placeholder="Name"
       />
 
       <base-input
         v-model="testimonialEditForm.position"
         label="Position"
+        class="mb-1"
         placeholder="Position"
       />
 
@@ -167,5 +167,5 @@ const testimonialHeaders = [
 </template>
 
 <style lang="scss" scoped>
-@import './assets/scss/TestimonialsMgmt';
+@import "./assets/scss/TestimonialsMgmt";
 </style>

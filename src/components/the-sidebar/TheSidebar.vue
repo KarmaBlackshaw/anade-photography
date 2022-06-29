@@ -70,5 +70,5 @@ const tabs = reactive([
 </template>
 
 <style lang="scss" scoped>
-@import './assets/scss/TheSidebar';
+@import './TheSidebar';
 </style>

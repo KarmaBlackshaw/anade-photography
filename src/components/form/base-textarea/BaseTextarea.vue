@@ -37,5 +37,5 @@ const emit = defineEmits(['update:modelValue'])
 </template>
 
 <style lang="scss" scoped>
-@import './assets/scss/BaseTextarea.scss';
+@import './/BaseTextarea.scss';
 </style>

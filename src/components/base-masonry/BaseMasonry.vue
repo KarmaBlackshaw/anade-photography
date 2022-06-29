@@ -52,5 +52,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './assets/scss/BaseMasonry.scss';
+@import './BaseMasonry.scss';
 </style>

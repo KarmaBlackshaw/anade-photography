@@ -1,11 +1,35 @@
+<script setup>
+import {
+  truncate as truncateStr
+} from '@/utils/string'
+
+const {
+  storeModal: servicesStoreModal,
+  storeForm: servicesStoreForm,
+  store: servicesStore
+} = useServices()
+
+const modal = ref(true)
+
+</script>
+
 <template>
   <section
     id="about-management"
     class="about-management"
   >
     <base-card class="bg-transparent">
-      <base-card-title>
+      <base-card-title class="flex justify-between">
         Services Management
+
+        <base-button
+          size="md"
+          color="blue"
+          outlined
+          @click="servicesStoreModal = true"
+        >
+          Add
+        </base-button>
       </base-card-title>
 
       <base-card-body>
@@ -28,7 +52,7 @@
               </base-td>
 
               <base-td class="truncate">
-                {{ truncateString('amet consectetur adipisicing elit. Aspernatur exercitationem officia, aut soluta expedita ipsam delectus nostrum sit porro excepturi esse ipsum dolorum sequi perspiciatis, explicabo id officiis. Voluptate, mollitia.', 30) }}
+                {{ truncateStr('amet consectetur adipisicing elit. Aspernatur exercitationem officia, aut soluta expedita ipsam delectus nostrum sit porro excepturi esse ipsum dolorum sequi perspiciatis, explicabo id officiis. Voluptate, mollitia.', 30) }}
               </base-td>
 
               <base-td class="td__thumbnail">
@@ -55,40 +79,43 @@
       </base-card-body>
     </base-card>
 
-    <base-modal v-model="modal">
+    <base-modal v-model="servicesStoreModal">
       <template #header>
         header
       </template>
-      asfasdf
+
+      <base-input
+        v-model="servicesStoreForm.title"
+        class="mb-1"
+        label="Title"
+        placeholder="Title"
+      />
+
+      <base-textarea
+        v-model="servicesStoreForm.content"
+        label="Content"
+        class="mb-1"
+        placeholder="Content"
+      />
+
+      <base-input
+        v-model="servicesStoreForm.thumbnail"
+        type="file"
+        placeholder="Choose image"
+        label="Image"
+        accept="image/*"
+        multiple
+      />
+
       <template #footer>
-        footer
+        <base-button @click="servicesStore">
+          Save
+        </base-button>
       </template>
     </base-modal>
   </section>
 </template>
 
-<script>
-import { ref } from 'vue'
-
-export default {
-  setup () {
-    const truncateString = (string, maxLength) => {
-      return string.length > maxLength
-        ? `${string.substring(0, maxLength)}…`
-        : string
-    }
-
-    const modal = ref(false)
-
-    return {
-      modal,
-
-      truncateString
-    }
-  }
-}
-</script>
-
 <style lang="scss" scoped>
-@import './assets/scss/ServicesMgmt';
+@import "./assets/scss/ServicesMgmt";
 </style>

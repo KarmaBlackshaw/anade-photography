@@ -1,5 +1,6 @@
 
 <script setup>
+
 defineProps({
   label: {
     type: String,
@@ -9,10 +10,22 @@ defineProps({
   modelValue: {
     type: [String, Number],
     default: ''
+  },
+
+  type: {
+    type: String,
+    default: 'text',
+    validator (val) {
+      return val !== 'file'
+    }
   }
 })
 
 const emit = defineEmits(['update:modelValue'])
+
+function handleInputChange ($event) {
+  emit('update:modelValue', $event.target.value)
+}
 
 </script>
 
@@ -27,14 +40,14 @@ const emit = defineEmits(['update:modelValue'])
 
     <input
       v-bind="$attrs"
-      type="text"
+      :type="type"
       class="base-input"
       :value="modelValue"
-      @input="emit('update:modelValue', $event.target.value)"
+      @input="handleInputChange"
     >
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import './assets/scss/BaseInput.scss';
+@import './/BaseInput';
 </style>
