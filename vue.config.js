@@ -23,8 +23,7 @@ module.exports = defineConfig({
         ],
         dirs: [
           './src/composables',
-          './src/store',
-          './src/utilities'
+          './src/store'
         ]
       }),
       require('unplugin-vue-components/webpack')({
