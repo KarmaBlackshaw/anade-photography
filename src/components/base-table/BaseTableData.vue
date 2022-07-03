@@ -58,7 +58,9 @@ defineProps({
           :colspan="headers.length"
           class="text-center"
         >
-          Loading
+          <div class="flex justify-center">
+            <base-loader />
+          </div>
         </base-td>
       </base-tr>
 
