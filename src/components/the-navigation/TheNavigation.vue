@@ -72,7 +72,10 @@
               >
                 <template v-if="currTab.type === 'button'">
                   <!-- class="navigation__btn" -->
-                  <base-button>
+                  <base-button
+                    color="white"
+                    outlined
+                  >
                     {{ currTab.text }}
                   </base-button>
                 </template>

@@ -14,6 +14,8 @@
 
     <base-section-body class="contact__btn-container mb-20">
       <base-button
+        color="white"
+        outlined
         size="lg"
         @click="test"
       >
