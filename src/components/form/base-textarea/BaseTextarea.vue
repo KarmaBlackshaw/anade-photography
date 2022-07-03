@@ -19,12 +19,9 @@ const emit = defineEmits(['update:modelValue'])
 
 <template>
   <div class="base-textarea-container">
-    <label
-      v-if="label"
-      class="base-textarea__label"
-    >
+    <base-label v-if="label">
       {{ label }}
-    </label>
+    </base-label>
 
     <textarea
       type="text"

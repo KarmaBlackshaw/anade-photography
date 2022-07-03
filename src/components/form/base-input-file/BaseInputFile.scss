@@ -1,0 +1,13 @@
+input {
+  width: 100%;
+  padding: 7px 10px;
+  color: theme("colors.neutral.50");
+  border-radius: 5px;
+  font-size: 13px;
+  background-color: theme("colors.neutral.900");
+  border: 1px solid theme("colors.neutral.800");
+
+  &::placeholder {
+    opacity: 0.5;
+  }
+}
