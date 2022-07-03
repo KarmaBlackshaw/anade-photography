@@ -41,7 +41,7 @@ export default () => ({
   },
 
   prompt (_options = {}) {
-    const options = Object.assign(_options, {
+    const { onConfirm, onDeny, ...options } = Object.assign(_options, {
       title: 'Prompt',
       text: 'Are you sure?',
       showCancelButton: true,
@@ -57,7 +57,7 @@ export default () => ({
         icon: 'info'
       })
       .then(result => {
-        return invokeFn(options[result.isConfirmed ? 'onConfirm' : 'onDeny'])
+        return invokeFn(result.isConfirmed ? onConfirm : onDeny)
       })
   }
 })
