@@ -19,6 +19,12 @@ export default {
       },
       options: ['transparent', 'white', 'blue', 'green'],
       defaultValue: 'white'
+    },
+    outlined: {
+      control: 'boolean'
+    },
+    isLoading: {
+      control: 'boolean'
     }
   }
 }
