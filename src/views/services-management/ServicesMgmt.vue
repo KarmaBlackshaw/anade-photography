@@ -6,10 +6,9 @@ import {
 const {
   storeModal: servicesStoreModal,
   storeForm: servicesStoreForm,
-  store: servicesStore
+  store: servicesStore,
+  storeState: servicesStoreState
 } = useServices()
-
-const modal = ref(true)
 
 </script>
 
@@ -56,22 +55,31 @@ const modal = ref(true)
               </base-td>
 
               <base-td class="td__thumbnail">
-                <img
-                  src="https://images.pexels.com/photos/10334838/pexels-photo-10334838.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                  alt=""
-                >
+                <div class="flex justify-center">
+                  <img
+                    src="https://images.pexels.com/photos/10334838/pexels-photo-10334838.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                    alt=""
+                  >
+                </div>
               </base-td>
 
               <base-td
                 class="td__actions"
                 width="20px"
               >
-                <base-icon-edit
-                  class="actions__icon"
-                  @click="modal = !modal"
-                />
+                <div class="flex justify-center items-center gap-2">
+                  <base-icon-edit
+                    color="#22c55e"
+                    class="w-[15px] cursor-pointer"
+                    @click="testimonialShowEditModal(item)"
+                  />
 
-                <base-icon-trash class="actions__icon" />
+                  <base-icon-trash
+                    color="#f87171"
+                    class="w-[15px] cursor-pointer"
+                    @click="testimonialsDelete(item.id)"
+                  />
+                </div>
               </base-td>
             </base-tr>
           </base-tbody>
@@ -91,16 +99,8 @@ const modal = ref(true)
         placeholder="Title"
       />
 
-      <base-textarea
-        v-model="servicesStoreForm.content"
-        label="Content"
-        class="mb-1"
-        placeholder="Content"
-      />
-
-      <base-input
+      <base-input-file
         v-model="servicesStoreForm.thumbnail"
-        type="file"
         placeholder="Choose image"
         label="Image"
         accept="image/*"
@@ -108,7 +108,12 @@ const modal = ref(true)
       />
 
       <template #footer>
-        <base-button @click="servicesStore">
+        <base-button
+          color="blue"
+          :is-loading="servicesStoreState.isLoading"
+          outlined
+          @click="servicesStore"
+        >
           Save
         </base-button>
       </template>
