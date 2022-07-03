@@ -14,7 +14,6 @@ export default defineStore('testimonials', {
 
         this.$patch(state => {
           state.list = data
-          console.log(data)
         })
       } catch (error) {
         console.log(error)
