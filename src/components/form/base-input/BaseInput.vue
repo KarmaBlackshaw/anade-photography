@@ -31,12 +31,9 @@ function handleInputChange ($event) {
 
 <template>
   <div class="base-input-container">
-    <label
-      v-if="label"
-      class="base-input__label"
-    >
+    <base-label v-if="label">
       {{ label }}
-    </label>
+    </base-label>
 
     <input
       v-bind="$attrs"
