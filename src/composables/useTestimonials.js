@@ -22,8 +22,11 @@ export default () => {
   })
 
   const storeModal = ref(false)
+  const storeState = reactive({
+    isLoading: false
+  })
 
-  async function store () {
+  function store () {
     const schema = Joi.object({
       name: Joi.string()
         .required(),
@@ -33,24 +36,28 @@ export default () => {
         .required()
     })
 
-    try {
-      const data = await schema.validateAsync(storeForm)
+    const { isLoading } = useAsyncState(async () => {
+      try {
+        const data = await schema.validateAsync(storeForm)
 
-      await testimonialStore.store(data)
+        await testimonialStore.store(data)
 
-      fetch()
+        fetch()
 
-      storeModal.value = false
+        storeModal.value = false
 
-      storeFormReset()
+        storeFormReset()
 
-      return swal.success({
-        text: 'Testimonial successfully saved!'
-      })
-    } catch (error) {
-      console.log(error)
-      throw error
-    }
+        return swal.success({
+          text: 'Testimonial successfully saved!'
+        })
+      } catch (error) {
+        console.log(error)
+        throw error
+      }
+    })
+
+    storeState.isLoading = isLoading
   }
 
   /**
@@ -137,8 +144,8 @@ export default () => {
     })
   }
 
-  onMounted(async () => {
-    await fetch()
+  onMounted(() => {
+    fetch()
   })
 
   return {
@@ -149,6 +156,7 @@ export default () => {
     storeForm,
     storeFormReset,
     storeModal,
+    storeState: readonly(storeState),
 
     showEditModal,
     editModal,

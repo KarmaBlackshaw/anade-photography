@@ -1,15 +1,4 @@
-import {
-  collection,
-  addDoc,
-  query,
-  getDocs,
-  deleteDoc,
-  updateDoc,
-  doc,
-  serverTimestamp
-} from "firebase/firestore"
-
-import { db } from '@/config/firebase'
+import supabase from '@/config/supabase'
 
 export default defineStore('testimonials', {
   state: () => ({
@@ -19,17 +8,14 @@ export default defineStore('testimonials', {
   actions: {
     async fetch () {
       try {
-        const dbRef = collection(db, "testimonials")
-        const snapshot = await getDocs(query(dbRef))
+        const { data } = await supabase
+          .from('testimonials')
+          .select()
 
         this.$patch(state => {
-          state.list = snapshot.docs.map(reslt => ({
-            id: reslt.id,
-            ...reslt.data()
-          }))
+          state.list = data
+          console.log(data)
         })
-
-        return this.list
       } catch (error) {
         console.log(error)
         throw error
@@ -38,15 +24,17 @@ export default defineStore('testimonials', {
 
     async store (data) {
       try {
+        const { error } = await supabase
+          .from('testimonials')
+          .insert([{
+            name: data.name,
+            position: data.position,
+            content: data.content
+          }])
 
-        const dbRef = collection(db, "testimonials")
-
-        await addDoc(dbRef, {
-          content: data.content,
-          name: data.name,
-          position: data.position,
-          created_at: serverTimestamp()
-        })
+        if (error) {
+          throw error
+        }
       } catch (error) {
         console.log(error)
         throw error
@@ -55,7 +43,10 @@ export default defineStore('testimonials', {
 
     async delete (id) {
       try {
-        await deleteDoc(doc(db, "testimonials", id))
+        await supabase
+          .from('testimonials')
+          .delete()
+          .match({ id })
       } catch (error) {
         console.log(error)
         throw error
@@ -64,13 +55,14 @@ export default defineStore('testimonials', {
 
     async update (item) {
       try {
-        const dbRef = doc(db, "testimonials", item.id)
-
-        await updateDoc(dbRef, {
-          content: item.content,
-          name: item.name,
-          position: item.position
-        })
+        await supabase
+          .from('testimonials')
+          .update({
+            content: item.content,
+            name: item.name,
+            position: item.position
+          })
+          .match({ id: item.id })
       } catch (error) {
         console.log(error)
         throw error
