@@ -9,9 +9,12 @@ const {
   isFetching: testimonialsIsFetching,
   list: testimonialsList,
   del: testimonialsDelete,
+
   storeForm: testimonialsStoreForm,
   store: testimonialsStore,
   storeModal: testimonialStoreModal,
+  storeState: testimonialStoreState,
+
   showEditModal: testimonialShowEditModal,
   editModal: testimonialEditModal,
   editForm: testimonialEditForm,
@@ -65,30 +68,18 @@ const testimonialHeaders = [
           :items="testimonialsList"
         >
           <template #action="{item}">
-            <div class="flex justify-end">
-              <base-button
-                circle
-                size="sm"
-                color="transparent"
-                outlined
-              >
-                <base-icon-edit
-                  color="#22c55e"
-                  @click="testimonialShowEditModal(item)"
-                />
-              </base-button>
+            <div class="flex justify-center items-center gap-2">
+              <base-icon-edit
+                color="#22c55e"
+                class="w-[15px] cursor-pointer"
+                @click="testimonialShowEditModal(item)"
+              />
 
-              <base-button
-                circle
-                size="sm"
-                color="transparent"
-                outlined
-              >
-                <base-icon-trash
-                  color="#f87171"
-                  @click="testimonialsDelete(item.id)"
-                />
-              </base-button>
+              <base-icon-trash
+                color="#f87171"
+                class="w-[15px] cursor-pointer"
+                @click="testimonialsDelete(item.id)"
+              />
             </div>
           </template>
 
@@ -126,7 +117,12 @@ const testimonialHeaders = [
       />
 
       <template #footer>
-        <base-button @click="testimonialsStore">
+        <base-button
+          :is-loading="testimonialStoreState.isLoading"
+          outlined
+          color="blue"
+          @click="testimonialsStore"
+        >
           Save
         </base-button>
       </template>
@@ -158,7 +154,11 @@ const testimonialHeaders = [
       />
 
       <template #footer>
-        <base-button @click="testimonialEditSave">
+        <base-button
+          outlined
+          color="blue"
+          @click="testimonialEditSave"
+        >
           Save
         </base-button>
       </template>
