@@ -1,38 +1,15 @@
 const { defineConfig } = require('@vue/cli-service')
 
+const AutoImport = require('./src/config/unplugin-auto-import')
+const VueComponents = require('./src/config/unplugin-vue-components')
+
 module.exports = defineConfig({
   transpileDependencies: true,
 
   configureWebpack: {
     plugins: [
-      require('unplugin-auto-import/webpack')({
-        include: [
-          /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-          /\.vue$/, /\.vue\?vue/, // .vue
-          /\.md$/ // .md
-        ],
-        dts: false,
-        eslintrc: {
-          enabled: true
-        },
-        imports: [
-          '@vueuse/core',
-          'vue',
-          'pinia',
-          'vue-router'
-        ],
-        dirs: [
-          './src/composables',
-          './src/store'
-        ]
-      }),
-      require('unplugin-vue-components/webpack')({
-        dirs: [
-          './src/components'
-        ],
-        dts: false,
-        directives: false
-      })
+      AutoImport,
+      VueComponents
     ]
   },
 
