@@ -6,8 +6,11 @@ import {
 
 // composables
 const {
-  isFetching: testimonialsIsFetching,
+  fetchState: testimonialsFetchState,
+  fetch: testimonialsFetch,
+
   list: testimonialsList,
+
   del: testimonialsDelete,
 
   storeForm: testimonialsStoreForm,
@@ -51,20 +54,32 @@ const testimonialHeaders = [
       <base-card-title class="flex justify-between">
         Testimonials Management
 
-        <base-button
-          size="md"
-          color="blue"
-          outlined
-          @click="testimonialStoreModal = true"
-        >
-          Add
-        </base-button>
+        <div class="flex gap-2">
+          <base-button
+            size="md"
+            color="white"
+            outlined
+            :is-loading="testimonialsFetchState.isLoading"
+            @click="testimonialsFetch"
+          >
+            Reload
+          </base-button>
+
+          <base-button
+            size="md"
+            color="blue"
+            outlined
+            @click="testimonialStoreModal = true"
+          >
+            Add
+          </base-button>
+        </div>
       </base-card-title>
 
       <base-card-body>
         <base-table-data
           :headers="testimonialHeaders"
-          :is-loading="testimonialsIsFetching"
+          :is-loading="testimonialsFetchState.isLoading"
           :items="testimonialsList"
         >
           <template #action="{item}">

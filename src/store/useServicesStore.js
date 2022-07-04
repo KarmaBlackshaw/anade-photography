@@ -1,16 +1,6 @@
 import supabase from '@/config/supabase'
 
-import {
-  random as randomString
-} from '@/utils/string'
-
-import {
-  last as lastArray
-} from '@/utils/array'
-
-import _toLower from 'lodash/toLower'
-
-export default defineStore('testimonials', {
+export default defineStore('services', {
   state: () => ({
     list: []
   }),
@@ -18,17 +8,24 @@ export default defineStore('testimonials', {
   actions: {
     async fetch () {
       try {
-        // const dbRef = collection(db, "services")
-        // const snapshot = await getDocs(query(dbRef))
+        const { data } = await supabase
+          .from('services')
+          .select()
 
-        // this.$patch(state => {
-        //   state.list = snapshot.docs.map(reslt => ({
-        //     id: reslt.id,
-        //     ...reslt.data()
-        //   }))
-        // })
+        console.log(data)
 
-        return this.list
+        this.$patch(state => {
+          data.forEach(curr => {
+            const { publicURL } = supabase
+              .storage
+              .from('images')
+              .getPublicUrl(curr.thumbnail)
+
+            curr.thumbnail = publicURL
+          })
+
+          state.list = data
+        })
       } catch (error) {
         console.log(error)
         throw error
@@ -37,29 +34,13 @@ export default defineStore('testimonials', {
 
     async store (data) {
       try {
-        const extension = lastArray(_toLower(data.thumbnail.name).split('.'))
-        const filename = `${randomString()}.${extension}`
-
-        const {
-          data: uploadData,
-          error: uploadError
-        } = await supabase
-          .storage
-          .from('images')
-          .upload(filename, data.thumbnail, {
-            cacheControl: '3600',
-            upsert: false
-          })
-
-        if (uploadError) {
-          throw uploadError
-        }
+        const filename = await (data.thumbnail && useUploadFile(data.thumbnail))
 
         const { error } = await supabase
           .from('services')
           .insert([{
             title: data.title,
-            thumbnail: uploadData.Key
+            thumbnail: filename
           }])
 
         if (error) {
@@ -69,33 +50,41 @@ export default defineStore('testimonials', {
         console.log(error)
         throw error
       }
+    },
+
+    async delete (id) {
+      try {
+        await supabase
+          .from('services')
+          .delete()
+          .match({ id })
+      } catch (error) {
+        console.log(error)
+        throw error
+      }
+    },
+
+    async update (item) {
+      try {
+        const filename = await (() => {
+          return item.thumbnail
+            ? useUploadFile(item.thumbnail)
+            : ''
+        })()
+
+        await supabase
+          .from('services')
+          .update({
+            title: item.title,
+            ...(filename && { thumbnail: filename })
+          })
+          .match({ id: item.id })
+
+      } catch (error) {
+        console.log(error)
+        throw error
+      }
     }
-
-    // async delete (id) {
-    //   try {
-    //     const dbRef = doc(db, "services", id)
-
-    //     await deleteDoc(dbRef)
-    //   } catch (error) {
-    //     console.log(error)
-    //     throw error
-    //   }
-    // },
-
-    // async update (item) {
-    //   try {
-    //     const dbRef = doc(db, "services", item.id)
-
-    //     await updateDoc(dbRef, {
-    //       content: item.content,
-    //       name: item.name,
-    //       position: item.position
-    //     })
-    //   } catch (error) {
-    //     console.log(error)
-    //     throw error
-    //   }
-    // }
   }
 })
 

@@ -63,11 +63,11 @@ export default () => {
   /**
    * Fetch
    */
-  const isFetching = ref(false)
+  const fetchState = reactive({ isLoading: false })
   function fetch () {
     const { isLoading } = useAsyncState(() => testimonialStore.fetch())
 
-    isFetching.value = isLoading
+    fetchState.isLoading = isLoading
   }
 
   /**
@@ -149,7 +149,9 @@ export default () => {
   })
 
   return {
-    isFetching: readonly(isFetching),
+    fetchState: readonly(fetchState),
+    fetch,
+
     list: readonly(computed(() => testimonialStore.list)),
 
     store,

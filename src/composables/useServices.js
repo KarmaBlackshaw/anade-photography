@@ -60,11 +60,11 @@ export default () => {
   /**
    * Fetch
    */
-  const isFetching = ref(false)
+  const fetchState = reactive({ isLoading: false })
   function fetch () {
     const { isLoading } = useAsyncState(servicesStore.fetch())
 
-    isFetching.value = isLoading
+    fetchState.isLoading = isLoading
   }
 
   /**
@@ -95,45 +95,47 @@ export default () => {
     reset: editFormReset
   } = useForm({
     id: null,
-    name: null,
-    position: null,
-    content: null
+    title: null,
+    thumbnail: null
   })
 
-  const editModal = ref(false)
+  const editModalState = ref(false)
 
   function showEditModal (item) {
     editForm.id = item.id
-    editForm.name = item.name
-    editForm.position = item.position
-    editForm.content = item.content
+    editForm.title = item.title
 
-    editModal.value = true
+    editModalState.value = true
   }
 
+  const editState = reactive({ isLoading: false })
+
   function editSave () {
-    const onConfirm = async () => {
-      try {
-        await servicesStore.update({
-          id: editForm.id,
-          content: editForm.content,
-          name: editForm.name,
-          position: editForm.position
-        })
+    const onConfirm = () => {
+      const { isLoading } = useAsyncState( async () => {
+        try {
+          await servicesStore.update({
+            id: editForm.id,
+            title: editForm.title,
+            thumbnail: editForm.thumbnail
+          })
 
-        fetch()
+          fetch()
 
-        editFormReset()
+          editFormReset()
 
-        editModal.value = false
+          editModalState.value = false
 
-        return swal.success({
-          text: 'Testimonial successfully saved!'
-        })
-      } catch (error) {
-        console.log(error)
-        throw error
-      }
+          return swal.success({
+            text: 'Testimonial successfully saved!'
+          })
+        } catch (error) {
+          console.log(error)
+          throw error
+        }
+      })
+
+      editState.isLoading = isLoading
     }
 
     return swal.prompt({
@@ -146,7 +148,9 @@ export default () => {
   })
 
   return {
-    isFetching: readonly(isFetching),
+    fetchState: readonly(fetchState),
+    fetch,
+
     list: readonly(computed(() => servicesStore.list)),
 
     store,
@@ -156,9 +160,10 @@ export default () => {
     storeState: readonly(storeState),
 
     showEditModal,
-    editModal,
+    editModalState,
     editForm,
     editSave,
+    editState,
 
     del
   }
