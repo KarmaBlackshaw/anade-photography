@@ -1,6 +1,7 @@
 
 <script setup>
 import Joi from 'joi'
+import _isEmpty from 'lodash/isEmpty'
 
 defineProps({
   headers: {
@@ -60,6 +61,17 @@ defineProps({
         >
           <div class="flex justify-center">
             <base-loader />
+          </div>
+        </base-td>
+      </base-tr>
+
+      <base-tr v-else-if="_isEmpty(items)">
+        <base-td
+          :colspan="headers.length"
+          class="text-center"
+        >
+          <div class="flex justify-center text-neutral-500">
+            No Data
           </div>
         </base-td>
       </base-tr>
