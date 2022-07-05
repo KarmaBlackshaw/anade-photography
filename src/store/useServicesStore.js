@@ -12,8 +12,6 @@ export default defineStore('services', {
           .from('services')
           .select()
 
-        console.log(data)
-
         this.$patch(state => {
           data.forEach(curr => {
             const { publicURL } = supabase

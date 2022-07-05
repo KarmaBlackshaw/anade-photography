@@ -50,7 +50,7 @@ export default () => {
         })
       } catch (error) {
         console.log(error)
-        throw error
+        return swal.error()
       }
     })
 
@@ -78,7 +78,7 @@ export default () => {
         fetch()
       } catch (error) {
         console.log(error)
-        throw error
+        return swal.error()
       }
     }
 
@@ -131,7 +131,7 @@ export default () => {
           })
         } catch (error) {
           console.log(error)
-          throw error
+          return swal.error()
         }
       })
 
