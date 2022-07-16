@@ -5,10 +5,10 @@ import 'sweetalert2/src/sweetalert2.scss'
 
 export default () => ({
   success (_options = {}) {
-    const options = Object.assign(_options, {
+    const options = Object.assign({
       title: 'Success',
       text: 'The operation has been resolved successfully!'
-    })
+    }, _options)
 
     return Swal.fire({
       ...options,
@@ -17,10 +17,12 @@ export default () => ({
   },
 
   error (_options = {}) {
-    const options = Object.assign(_options, {
+    const options = Object.assign({
       title: 'Error',
       text: 'The operation has been rejected. Something went wrong!'
-    })
+    }, _options)
+
+    console.log(_options)
 
     return Swal.fire({
       ...options,
@@ -29,10 +31,10 @@ export default () => ({
   },
 
   warning (_options = {}) {
-    const options = Object.assign(_options, {
+    const options = Object.assign({
       title: 'Warning',
       text: 'Warning'
-    })
+    }, _options)
 
     return Swal.fire({
       ...options,
@@ -41,13 +43,13 @@ export default () => ({
   },
 
   prompt (_options = {}) {
-    const { onConfirm, onDeny, ...options } = Object.assign(_options, {
+    const { onConfirm, onDeny, ...options } = Object.assign({
       title: 'Prompt',
       text: 'Are you sure?',
       showCancelButton: true,
       confirmButtonText: 'Yes',
       denyButtonText: `No`
-    })
+    }, _options)
 
     const invokeFn = fn => typeof fn === 'function' && fn()
 
