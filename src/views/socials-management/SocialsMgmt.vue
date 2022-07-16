@@ -1,94 +1,180 @@
+<script setup>
+import {
+  truncate as truncateStr
+} from '@/utils/string'
+
+const {
+  fetchState: socialsFetchState,
+  fetch: socialsFetch,
+
+  list: socialsList,
+
+  storeModal: socialsStoreModal,
+  storeForm: socialsStoreForm,
+  store: socialsStore,
+  storeState: socialsStoreState,
+
+  showEditModal: socialsShowEditModal,
+  editForm: socialsEditForm,
+  editModalState: socialsEditModalState,
+  editSave: socialsEditSave,
+  editState: socialsEditState,
+
+  del: socialsDelete
+} = useSocials()
+
+const socialsHeaders = [
+  {
+    title: 'Link',
+    key: 'link'
+  },
+  {
+    title: 'Thumbnail',
+    key: 'thumbnail'
+  },
+  {
+    title: '',
+    key: 'action'
+  }
+]
+
+</script>
+
 <template>
   <section
     id="about-management"
     class="about-management"
   >
     <base-card class="bg-transparent">
-      <base-card-title>
+      <base-card-title class="flex justify-between">
         Socials Management
+
+        <div class="flex gap-2">
+          <base-button
+            size="md"
+            color="white"
+            outlined
+            :is-loading="socialsFetchState.isLoading"
+            @click="socialsFetch"
+          >
+            Reload
+          </base-button>
+          <base-button
+            size="md"
+            color="blue"
+            outlined
+            @click="socialsStoreModal = true"
+          >
+            Add
+          </base-button>
+        </div>
       </base-card-title>
 
       <base-card-body>
-        <base-table class="about-td">
-          <base-thead>
-            <base-th>Title</base-th>
+        <base-table-data
+          :headers="socialsHeaders"
+          :is-loading="socialsFetchState.isLoading"
+          :items="socialsList"
+        >
+          <template #thumbnail="{item}">
+            <img
+              :src="item.thumbnail_public_url"
+              alt=""
+              class="h-[70px] w-[70px] object-none rounded-sm"
+            >
+          </template>
 
-            <base-th>Content</base-th>
+          <template #action="{ item }">
+            <div class="flex justify-center items-center gap-2">
+              <base-icon-edit
+                color="#22c55e"
+                class="w-[15px] cursor-pointer"
+                @click="socialsShowEditModal(item)"
+              />
 
-            <base-th class="td__thumbnail">
-              Thumbnail
-            </base-th>
+              <base-icon-trash
+                color="#f87171"
+                class="w-[15px] cursor-pointer"
+                @click="socialsDelete(item.id, item.thumbnail)"
+              />
+            </div>
+          </template>
 
-            <base-th class="td__actions" />
-          </base-thead>
-          <base-tbody>
-            <base-tr>
-              <base-td>
-                Lorem ipsum dolor sit
-              </base-td>
-
-              <base-td class="truncate">
-                {{ truncateString('amet consectetur adipisicing elit. Aspernatur exercitationem officia, aut soluta expedita ipsam delectus nostrum sit porro excepturi esse ipsum dolorum sequi perspiciatis, explicabo id officiis. Voluptate, mollitia.', 30) }}
-              </base-td>
-
-              <base-td class="td__thumbnail">
-                <img
-                  src="https://images.pexels.com/photos/10334838/pexels-photo-10334838.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                  alt=""
-                >
-              </base-td>
-
-              <base-td
-                class="td__actions"
-                width="20px"
-              >
-                <base-icon-edit
-                  class="actions__icon"
-                  @click="modal = !modal"
-                />
-
-                <base-icon-trash class="actions__icon" />
-              </base-td>
-            </base-tr>
-          </base-tbody>
-        </base-table>
+          <template #content="{item}">
+            {{ truncateStr(item.content, 80) }}
+          </template>
+        </base-table-data>
       </base-card-body>
     </base-card>
 
-    <base-modal v-model="modal">
+    <base-modal v-model="socialsStoreModal">
       <template #header>
-        header
+        Add Social
       </template>
-      asfasdf
+
+      <base-input
+        v-model="socialsStoreForm.link"
+        class="mb-1"
+        label="Link"
+        type="url"
+        placeholder="Link"
+      />
+
+      <base-input-file
+        v-model="socialsStoreForm.thumbnail"
+        placeholder="Choose image"
+        label="Image"
+        accept=".svg"
+        multiple
+      />
+
       <template #footer>
-        footer
+        <base-button
+          color="blue"
+          :is-loading="socialsStoreState.isLoading"
+          outlined
+          @click="socialsStore"
+        >
+          Save
+        </base-button>
+      </template>
+    </base-modal>
+
+    <base-modal v-model="socialsEditModalState">
+      <template #header>
+        Edit Social
+      </template>
+
+      <base-input
+        v-model="socialsEditForm.link"
+        class="mb-1"
+        label="Link"
+        placeholder="Link"
+        type="url"
+      />
+
+      <base-input-file
+        v-model="socialsEditForm.thumbnail"
+        placeholder="Choose image"
+        label="Image"
+        accept="image/*"
+        multiple
+      />
+
+      <template #footer>
+        <base-button
+          color="blue"
+          :is-loading="socialsEditState.isLoading"
+          outlined
+          @click="socialsEditSave"
+        >
+          Save
+        </base-button>
       </template>
     </base-modal>
   </section>
 </template>
 
-<script>
-import { ref } from 'vue'
-
-export default {
-  setup () {
-    const truncateString = (string, maxLength) => {
-      return string.length > maxLength
-        ? `${string.substring(0, maxLength)}…`
-        : string
-    }
-
-    const modal = ref(false)
-
-    return {
-      modal,
-
-      truncateString
-    }
-  }
-}
-</script>
-
 <style lang="scss" scoped>
-@import './assets/scss/SocialsMgmt';
+@import ".//SocialsMgmt";
 </style>

@@ -174,5 +174,5 @@ const servicesHeaders = [
 </template>
 
 <style lang="scss" scoped>
-@import "./assets/scss/ServicesMgmt";
+@import "./ServicesMgmt";
 </style>
