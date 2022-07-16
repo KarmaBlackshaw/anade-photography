@@ -207,6 +207,8 @@
     "useSessionStorage": true,
     "useShare": true,
     "useSlots": true,
+    "useSocials": true,
+    "useSocialsStore": true,
     "useSpeechRecognition": true,
     "useSpeechSynthesis": true,
     "useStorage": true,
