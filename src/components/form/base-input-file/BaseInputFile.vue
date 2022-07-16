@@ -3,11 +3,6 @@ const props = defineProps({
   label: {
     type: String,
     default: ''
-  },
-
-  multiple: {
-    type: [String, Boolean],
-    default: false
   }
 })
 
@@ -26,6 +21,7 @@ function handleChange (e) {
 
     <input
       type="file"
+      v-bind="$attrs"
       @change="handleChange"
     >
   </div>
